@@ -1,0 +1,26 @@
+{
+    "name": "xsanisty/silex-starter-admin",
+    "description": "Base admin module for SilexStarter",
+    "require": {
+        "php": ">= 5.4.0",
+    },
+    "require-dev":{
+        "phpunit/phpunit" : "4.*",
+        "silex/web-profiler" : "1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "" : [
+                "src/"
+            ]
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ikhsan Agustian",
+            "email": "ikhsan017@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}

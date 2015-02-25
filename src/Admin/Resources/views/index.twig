@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    {% block meta %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock %}
+
+    <title>
+        {% block title %}{{ title | default('Dashboard') }}{% endblock %}
+    </title>
+
+    {% block header %}
+    {{ stylesheet([
+        '@xsanisty-admin/css/bootstrap.min.css',
+        '@xsanisty-admin/css/font-awesome.min.css',
+        '@xsanisty-admin/css/dashboard/dashboard.css',
+        '@xsanisty-admin/css/themes/blue.css',
+    ]) }}
+
+    {{ stylesheet() }}
+    {% endblock %}
+</head>
+<body>
+    <div id="page-wrapper">
+
+        {# sidebar #}
+        {% block sidebar %}
+            {% include '@xsanisty-admin/sidebar.twig' %}
+        {% endblock %}
+
+        <div id="content-wrapper">
+            <div class="page-content">
+                {# header #}
+                {% block topbar %}
+                    {% include '@xsanisty-admin/topbar.twig' %}
+                {% endblock %}
+
+                {% block content %}{% endblock %}
+
+            </div>
+        </div>
+    </div>
+
+    {% block script %}
+    {{ javascript([
+        '@xsanisty-admin/js/jquery.min.js',
+        '@xsanisty-admin/js/bootstrap.min.js',
+        '@xsanisty-admin/js/jquery.cookie.js',
+        '@xsanisty-admin/js/jquery/bootstrap.js'
+    ]) }}
+    {{ javascript() }}
+    {% endblock %}
+</body>
+</html>
