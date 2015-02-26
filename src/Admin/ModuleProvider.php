@@ -32,7 +32,8 @@ class ModuleProvider implements ModuleProviderInterface{
             'middlewares'   => 'Resources/middlewares.php',
             'views'         => 'Resources/views',
             'controllers'   => 'Controller',
-            'config'        => 'Resources/config'
+            'config'        => 'Resources/config',
+            'assets'        => 'Resources/assets'
         ]);
     }
 
