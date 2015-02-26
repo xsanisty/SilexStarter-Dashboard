@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Repository;
+namespace Xsanisty\Admin\Repository;
 
 class UserRepository{
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Controller;
+namespace Xsanisty\Admin\Controller;
 
 use Url;
 use View;

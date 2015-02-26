@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Provider;
+namespace Xsanisty\Admin\Provider;
 
 use Silex\Application;
 use Silex\ServiceProviderInterface;

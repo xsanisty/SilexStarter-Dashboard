@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin;
+namespace Xsanisty\Admin;
 
 use Silex\Application;
 use SilexStarter\Module\ModuleResource;
