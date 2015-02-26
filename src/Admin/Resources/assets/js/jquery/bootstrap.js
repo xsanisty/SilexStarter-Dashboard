@@ -54,4 +54,10 @@ $(function(){
 
     // Set a tooltip on any elements with rel="tooltip" - see example
     $('[rel="tooltip"]').tooltip();
+
+    $('.sidebar-title').click(function(){
+        $(this).nextUntil('.sidebar-title').slideToggle();
+    });
+
+    //$('.sidebar-list').hide();
 });
