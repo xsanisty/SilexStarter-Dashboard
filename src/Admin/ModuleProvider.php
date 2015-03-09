@@ -36,7 +36,7 @@ class ModuleProvider implements ModuleProviderInterface{
         return new ModuleResource([
             'routes'        => 'Resources/routes.php',
             'middlewares'   => 'Resources/middlewares.php',
-            'views'         => 'Resources/views/'.$this->app['config']->get('@xsanisty-admin::config.template'),
+            'views'         => 'Resources/views',
             'controllers'   => 'Controller',
             'config'        => 'Resources/config',
             'assets'        => 'Resources/assets'

@@ -1,3 +1,4 @@
+{% set template = config.get('xsanisty-admin::config.template') %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,14 +28,14 @@
 
         {# sidebar #}
         {% block sidebar %}
-            {% include '@xsanisty-admin/sidebar.twig' %}
+            {% include '@xsanisty-admin/'~ template ~'/sidebar.twig' %}
         {% endblock %}
 
         <div id="content-wrapper">
             <div class="page-content">
                 {# header #}
                 {% block topbar %}
-                    {% include '@xsanisty-admin/topbar.twig' %}
+                    {% include '@xsanisty-admin/'~ template ~'/topbar.twig' %}
                 {% endblock %}
 
                 {% block content %}{% endblock %}

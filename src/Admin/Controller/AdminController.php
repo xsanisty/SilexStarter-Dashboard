@@ -16,12 +16,11 @@ class AdminController{
     protected $request;
 
     public function index(){
-
-        return View::make('@xsanisty-admin/index');
+        return View::make('@xsanisty-admin/'.Config::get('xsanisty-admin::config.template').'/index');
     }
 
     public function login(){
-        return View::make('@xsanisty-admin/login', [
+        return View::make('@xsanisty-admin/'.Config::get('xsanisty-admin::config.template').'/login', [
             'message'   => Session::getFlash('message'),
             'email'     => Session::getFlash('email'),
             'remember'  => Session::getFlash('remember'),
