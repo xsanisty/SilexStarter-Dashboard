@@ -4,6 +4,7 @@ namespace Xsanisty\Admin;
 
 use Silex\Application;
 use SilexStarter\Module\ModuleResource;
+use SilexStarter\Module\ModuleInfo;
 use SilexStarter\Contracts\ModuleProviderInterface;
 
 class ModuleProvider implements ModuleProviderInterface{
@@ -14,8 +15,13 @@ class ModuleProvider implements ModuleProviderInterface{
         $this->app = $app;
     }
 
-    public function getModuleName(){
-        return 'Xsanisty Admin Module';
+    public function getInfo(){
+        return new ModuleInfo([
+            'author_name'   => 'Xsanisty Development Team',
+            'author_email'  => 'developers@xsanisty.com',
+            'repository'    => 'https://github.com/xsanisty/SilexStarter-admin',
+            'name'          => 'Xsanisty Admin Module',
+        ]);
     }
 
     public function getModuleAccessor(){
@@ -30,7 +36,7 @@ class ModuleProvider implements ModuleProviderInterface{
         return new ModuleResource([
             'routes'        => 'Resources/routes.php',
             'middlewares'   => 'Resources/middlewares.php',
-            'views'         => 'Resources/views',
+            'views'         => 'Resources/views/'.$this->app['config']->get('@xsanisty-admin::config.template'),
             'controllers'   => 'Controller',
             'config'        => 'Resources/config',
             'assets'        => 'Resources/assets'

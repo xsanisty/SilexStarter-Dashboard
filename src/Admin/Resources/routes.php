@@ -16,6 +16,6 @@ Route::get('/admin', 'Xsanisty\Admin\Controller\AdminController:index')
      ->bind('admin.home')
      ->before(App::filter('admin.auth'));
 
-Route::group('/admin', function(){
+Route::group(['prefix' => '/admin'], function(){
     Route::get('/', 'Xsanisty\Admin\Controller\AdminController:index');
 })->before(App::filter('admin.auth'));
