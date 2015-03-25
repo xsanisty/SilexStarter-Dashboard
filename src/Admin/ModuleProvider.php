@@ -6,6 +6,7 @@ use Silex\Application;
 use SilexStarter\Module\ModuleResource;
 use SilexStarter\Module\ModuleInfo;
 use SilexStarter\Contracts\ModuleProviderInterface;
+use Xsanisty\Admin\Helper\SidebarMenuRenderer;
 
 class ModuleProvider implements ModuleProviderInterface{
 
@@ -51,5 +52,8 @@ class ModuleProvider implements ModuleProviderInterface{
 
     public function boot(){
 
+        $menu   = $this->app['menu_manager']->create('admin.sidebar');
+
+        $menu->setRenderer(new SidebarMenuRenderer);
     }
 }
