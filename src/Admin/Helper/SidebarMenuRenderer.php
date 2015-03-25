@@ -3,6 +3,7 @@
 namespace Xsanisty\Admin\Helper;
 
 use SilexStarter\Menu\MenuRendererInterface;
+use SilexStarter\Menu\MenuContainer;
 
 class SidebarMenuRenderer implements MenuRendererInterface
 {
