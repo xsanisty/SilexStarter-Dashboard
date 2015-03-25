@@ -9,12 +9,8 @@ class SidebarMenuRenderer implements MenuRendererInterface
 {
     protected $menu;
 
-    public function setMenu(MenuContainer $menu){
-        $this->menu = $menu;
-    }
-
-    public function render(){
-        return $this->createHtml($this->menu);
+    public function render(MenuContainer $menu){
+        return $this->createHtml($menu);
     }
 
     protected function createHtml(MenuContainer $menu){
@@ -26,6 +22,7 @@ class SidebarMenuRenderer implements MenuRendererInterface
                     <span class="menu-icon glyphicon glyphicon-transfer"></span>
                   </a>
                 </li>' : '';
+
         foreach ($menu->getItems() as $item) {
             if($item->hasChildren()){
                 $html .= '<li class="sidebar-title"><span>'.$item->getAttribute('label').'</span></li>';
