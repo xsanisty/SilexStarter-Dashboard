@@ -51,9 +51,7 @@ class ModuleProvider implements ModuleProviderInterface{
     }
 
     public function boot(){
-
         $menu   = $this->app['menu_manager']->create('admin.sidebar');
-
         $menu->setRenderer(new SidebarMenuRenderer);
     }
 }
