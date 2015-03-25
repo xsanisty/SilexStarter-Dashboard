@@ -1,0 +1,48 @@
+<?php
+
+namespace Xsanisty\Admin\Helper;
+
+use SilexStarter\Menu\MenuRendererInterface;
+
+class SidebarMenuRenderer implements MenuRendererInterface
+{
+    protected $menu;
+
+    public function setMenu(MenuContainer $menu){
+        $this->menu = $menu;
+    }
+
+    public function render(){
+        return $this->createHtml($this->menu);
+    }
+
+    protected function createHtml(MenuContainer $menu){
+        $format = '<li class="%s" id="%s"><a href="%s">%s  %s</a> %s </li>';
+        $html   = ($menu->getLevel() == 0) ?
+                '<ul class="sidebar"><li class="sidebar-main" id="toggle">
+                  <a href="#">
+                    Dashboard
+                    <span class="menu-icon glyphicon glyphicon-transfer"></span>
+                  </a>
+                </li>' : '';
+        foreach ($menu->getItems() as $item) {
+            if($item->hasChildren()){
+                $html .= '<li class="sidebar-title"><span>'.$item->getAttribute('label').'</span></li>';
+                $html .= $this->createHtml($item->getChildren());
+            }else{
+                $html .= sprintf(
+                    $format,
+                    $item->getAttribute('class'). ' sidebar-list',
+                    $item->getAttribute('id'),
+                    $item->getAttribute('url'),
+                    $item->getAttribute('label'),
+                    ($item->getAttribute('icon')) ? '<span class="menu-icon glyphicon glyphicon-'.$item->getAttribute('icon').'"></span>' : '',
+                    $this->createHtml($item->getChildren())
+                );
+            }
+        }
+        $html .= ($menu->getLevel() == 0) ? '</ul>' : '';
+
+        return $html;
+    }
+}
