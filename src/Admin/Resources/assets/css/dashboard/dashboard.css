@@ -157,7 +157,7 @@
     height: auto;
   }
   #page-wrapper.active {
-    padding-left: 70px;
+    padding-left: 250px;
   }
   #page-wrapper.active #sidebar-wrapper {
     left: 150px;
@@ -187,6 +187,13 @@
   @media only screen and (max-width : 992px) {
     .row header .meta .page {
       width: 180px;
+    }
+  }
+
+  @media only screen and (max-width : 640px){
+
+    #page-wrapper.active {
+      padding-left: 70px;
     }
   }
   .row.header .meta .breadcrumb-links {
