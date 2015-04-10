@@ -30,7 +30,7 @@ class AdminController{
     public function authenticate(){
         $remember = Request::get('remember', false);
         $email    = Request::get('email');
-        $redirect = Request::get('redirect', '/admin');
+        $redirect = Request::get('redirect');
 
         try{
             $credential = array(
@@ -47,7 +47,8 @@ class AdminController{
                 Sentry::login($user, false);
             }
 
-            return Response::redirect(Url::path($redirect));
+            return Response::redirect($redirect ? Url::path($redirect) : Url::to('admin.home'));
+
         }catch(\Exception $e){
             Session::flash('message', $e->getMessage());
             Session::flash('email', $email);
