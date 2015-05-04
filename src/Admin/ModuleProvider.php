@@ -57,7 +57,7 @@ class ModuleProvider implements ModuleProviderInterface
     public function register()
     {
         $this->app->registerServices(
-            $this->app['config']['xsanisty-admin::services']
+            $this->app['config']['@xsanisty-admin.services']
         );
     }
 
