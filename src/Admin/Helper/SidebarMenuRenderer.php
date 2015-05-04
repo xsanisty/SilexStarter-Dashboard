@@ -9,11 +9,13 @@ class SidebarMenuRenderer implements MenuRendererInterface
 {
     protected $menu;
 
-    public function render(MenuContainer $menu){
+    public function render(MenuContainer $menu)
+    {
         return $this->createHtml($menu);
     }
 
-    protected function createHtml(MenuContainer $menu){
+    protected function createHtml(MenuContainer $menu)
+    {
         $format = '<li class="%s" id="%s"><a href="%s">%s  %s</a> %s </li>';
         $html   = ($menu->getLevel() == 0) ?
                 '<ul class="sidebar"><li class="sidebar-main" id="toggle">
@@ -24,10 +26,10 @@ class SidebarMenuRenderer implements MenuRendererInterface
                 </li>' : '';
 
         foreach ($menu->getItems() as $item) {
-            if($item->hasChildren()){
+            if ($item->hasChildren()) {
                 $html .= '<li class="sidebar-title"><span>'.$item->getAttribute('label').'</span></li>';
                 $html .= $this->createHtml($item->getChildren());
-            }else{
+            } else {
                 $html .= sprintf(
                     $format,
                     $item->getAttribute('class'). ' sidebar-list',

@@ -12,10 +12,10 @@ Route::get('/admin/logout', 'Xsanisty\Admin\Controller\AdminController:logout')
      ->bind('admin.logout');
 
 /** protected admin section */
-Route::get('/admin', 'Xsanisty\Admin\Controller\AdminController:index')
-     ->bind('admin.home')
-     ->before(App::filter('admin.auth'));
-
-Route::group(['prefix' => '/admin'], function(){
-    Route::get('/', 'Xsanisty\Admin\Controller\AdminController:index');
-})->before(App::filter('admin.auth'));
+Route::group(
+    '/admin',
+    function(){
+        Route::get('/', 'Xsanisty\Admin\Controller\AdminController:index');
+    },
+    ['before' => App::filter('admin.auth')]
+);
