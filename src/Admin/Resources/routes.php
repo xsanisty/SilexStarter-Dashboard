@@ -14,8 +14,9 @@ Route::get('/admin/logout', 'Xsanisty\Admin\Controller\AdminController:logout')
 /** protected admin section */
 Route::group(
     '/admin',
-    function(){
-        Route::get('/', 'Xsanisty\Admin\Controller\AdminController:index');
+    function () {
+        Route::get('/', 'Xsanisty\Admin\Controller\AdminController:index')
+        ->bind('admin.home');
     },
     ['before' => App::filter('admin.auth')]
 );
