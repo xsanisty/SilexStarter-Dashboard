@@ -7,6 +7,7 @@ use SilexStarter\Module\ModuleResource;
 use SilexStarter\Module\ModuleInfo;
 use SilexStarter\Contracts\ModuleProviderInterface;
 use Xsanisty\Admin\Helper\SidebarMenuRenderer;
+use Xsanisty\Admin\Helper\NavbarMenuRenderer;
 
 class ModuleProvider implements ModuleProviderInterface
 {
@@ -24,7 +25,7 @@ class ModuleProvider implements ModuleProviderInterface
             [
                 'author_name'   => 'Xsanisty Development Team',
                 'author_email'  => 'developers@xsanisty.com',
-                'repository'    => 'https://github.com/xsanisty/SilexStarter-admin',
+                'repository'    => 'https://github.com/xsanisty/SilexStarter-BaseAdmin',
                 'name'          => 'Xsanisty Admin Module',
             ]
         );
@@ -65,5 +66,8 @@ class ModuleProvider implements ModuleProviderInterface
     {
         $menu   = $this->app['menu_manager']->create('admin.sidebar');
         $menu->setRenderer(new SidebarMenuRenderer);
+
+        $navbar = $this->app['menu_manager']->create('admin.navbar');
+        $navbar->setRenderer(new NavbarMenuRenderer);
     }
 }

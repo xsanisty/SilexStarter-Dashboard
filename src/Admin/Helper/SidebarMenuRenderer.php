@@ -28,7 +28,7 @@ class SidebarMenuRenderer implements MenuRendererInterface
         foreach ($menu->getItems() as $item) {
             if ($item->hasChildren()) {
                 $html .= '<li class="sidebar-title"><span>'.$item->getAttribute('label').'</span></li>';
-                $html .= $this->createHtml($item->getChildren());
+                $html .= $this->createHtml($item->getChildContainer());
             } else {
                 $html .= sprintf(
                     $format,
@@ -37,7 +37,7 @@ class SidebarMenuRenderer implements MenuRendererInterface
                     $item->getAttribute('url'),
                     $item->getAttribute('label'),
                     ($item->getAttribute('icon')) ? '<span class="menu-icon glyphicon glyphicon-'.$item->getAttribute('icon').'"></span>' : '',
-                    $this->createHtml($item->getChildren())
+                    $this->createHtml($item->getChildContainer())
                 );
             }
         }
