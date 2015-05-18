@@ -2,7 +2,7 @@
 
 namespace Xsanisty\Admin\Helper;
 
-use SilexStarter\Menu\MenuRendererInterface;
+use SilexStarter\Contracts\MenuRendererInterface;
 use SilexStarter\Menu\MenuContainer;
 
 class NavbarMenuRenderer implements MenuRendererInterface
