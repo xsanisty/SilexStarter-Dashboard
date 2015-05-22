@@ -1,5 +1,5 @@
 {
-    "name": "xsanisty/silex-starter-admin",
+    "name": "xsanisty/silex-starter-dashboard",
     "description": "Base admin module for SilexStarter",
     "require": {
         "php": ">= 5.4.0"
