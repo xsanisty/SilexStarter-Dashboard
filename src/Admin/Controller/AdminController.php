@@ -18,13 +18,13 @@ class AdminController
 
     public function index()
     {
-        return View::make('@xsanisty-admin/'.Config::get('@xsanisty-admin.config.template').'/index');
+        return View::make('@xsanisty-dashboard/'.Config::get('@xsanisty-dashboard.config.template').'/index');
     }
 
     public function login()
     {
         return View::make(
-            '@xsanisty-admin/'.Config::get('@xsanisty-admin.config.template').'/login',
+            '@xsanisty-dashboard/'.Config::get('@xsanisty-dashboard.config.template').'/login',
             [
                 'message'   => Session::getFlash('message'),
                 'email'     => Session::getFlash('email'),
