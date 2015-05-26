@@ -1,4 +1,4 @@
-{% set template = config.get('@xsanisty-admin.config.template') %}
+{% set template = config.get('@xsanisty-dashboard.config.template') %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,10 +14,10 @@
 
     {% block header %}
     {{ stylesheet([
-        '@xsanisty-admin/css/bootstrap.min.css',
-        '@xsanisty-admin/css/font-awesome.min.css',
-        '@xsanisty-admin/css/dashboard/dashboard.css',
-        '@xsanisty-admin/css/themes/blue.css',
+        '@xsanisty-dashboard/css/bootstrap.min.css',
+        '@xsanisty-dashboard/css/font-awesome.min.css',
+        '@xsanisty-dashboard/css/dashboard/dashboard.css',
+        '@xsanisty-dashboard/css/themes/blue.css',
     ]) }}
 
     {{ stylesheet() }}
@@ -28,14 +28,14 @@
 
         {# sidebar #}
         {% block sidebar %}
-            {% include '@xsanisty-admin/'~ template ~'/sidebar.twig' %}
+            {% include '@xsanisty-dashboard/'~ template ~'/sidebar.twig' %}
         {% endblock %}
 
         <div id="content-wrapper">
             <div class="page-content">
                 {# header #}
                 {% block topbar %}
-                    {% include '@xsanisty-admin/'~ template ~'/topbar.twig' %}
+                    {% include '@xsanisty-dashboard/'~ template ~'/topbar.twig' %}
                 {% endblock %}
 
                 {% block content %}{% endblock %}
@@ -46,10 +46,10 @@
 
     {% block script %}
     {{ javascript([
-        '@xsanisty-admin/js/jquery.min.js',
-        '@xsanisty-admin/js/bootstrap.min.js',
-        '@xsanisty-admin/js/jquery.cookie.js',
-        '@xsanisty-admin/js/jquery/bootstrap.js'
+        '@xsanisty-dashboard/js/jquery.min.js',
+        '@xsanisty-dashboard/js/bootstrap.min.js',
+        '@xsanisty-dashboard/js/jquery.cookie.js',
+        '@xsanisty-dashboard/js/jquery/bootstrap.js'
     ]) }}
     {{ javascript() }}
     {% endblock %}
