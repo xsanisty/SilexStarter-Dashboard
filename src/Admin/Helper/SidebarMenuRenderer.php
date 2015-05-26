@@ -11,10 +11,10 @@ class SidebarMenuRenderer implements MenuRendererInterface
 
     public function render(MenuContainer $menu)
     {
-        return $this->createHtml($menu);
+        return $this->generateHtml($menu);
     }
 
-    protected function createHtml(MenuContainer $menu)
+    protected function generateHtml(MenuContainer $menu)
     {
         $format = '<li class="%s" id="%s"><a href="%s">%s  %s</a> %s </li>';
         $html   = ($menu->getLevel() == 0) ?
@@ -28,7 +28,7 @@ class SidebarMenuRenderer implements MenuRendererInterface
         foreach ($menu->getItems() as $item) {
             if ($item->hasChildren()) {
                 $html .= '<li class="sidebar-title"><span>'.$item->getAttribute('label').'</span></li>';
-                $html .= $this->createHtml($item->getChildContainer());
+                $html .= $this->generateHtml($item->getChildContainer());
             } else {
                 $html .= sprintf(
                     $format,
@@ -37,7 +37,7 @@ class SidebarMenuRenderer implements MenuRendererInterface
                     $item->getAttribute('url'),
                     $item->getAttribute('label'),
                     ($item->getAttribute('icon')) ? '<span class="menu-icon glyphicon glyphicon-'.$item->getAttribute('icon').'"></span>' : '',
-                    $this->createHtml($item->getChildContainer())
+                    $this->generateHtml($item->getChildContainer())
                 );
             }
         }

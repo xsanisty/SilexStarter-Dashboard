@@ -26,14 +26,14 @@ class ModuleProvider implements ModuleProviderInterface
                 'author_name'   => 'Xsanisty Development Team',
                 'author_email'  => 'developers@xsanisty.com',
                 'repository'    => 'https://github.com/xsanisty/SilexStarter-BaseAdmin',
-                'name'          => 'Xsanisty Admin Module',
+                'name'          => 'Xsanisty Dashboard Module',
             ]
         );
     }
 
     public function getModuleIdentifier()
     {
-        return 'xsanisty-admin';
+        return 'xsanisty-dashboard';
     }
 
     public function getRequiredModules()
@@ -58,16 +58,16 @@ class ModuleProvider implements ModuleProviderInterface
     public function register()
     {
         $this->app->registerServices(
-            $this->app['config']['@xsanisty-admin.services']
+            $this->app['config']['@xsanisty-dashboard.services']
         );
     }
 
     public function boot()
     {
-        $menu   = $this->app['menu_manager']->create('admin.sidebar');
+        $menu   = $this->app['menu_manager']->create('admin_sidebar');
         $menu->setRenderer(new SidebarMenuRenderer);
 
-        $navbar = $this->app['menu_manager']->create('admin.navbar');
+        $navbar = $this->app['menu_manager']->create('admin_navbar');
         $navbar->setRenderer(new NavbarMenuRenderer);
     }
 }

@@ -8,54 +8,7 @@
                 Home / Dashboard
             </div>
         </div>
-        <div class="user pull-right">
-            <div class="item dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img class="" src="{{ asset('@xsanisty-admin/img/avatar.jpg') }}">
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li class="dropdown-header">
-                        Joe Bloggs
-                    </li>
-                    <li class="divider"></li>
-                    <li class="link">
-                        <a href="#">
-                            Profile
-                        </a>
-                    </li>
-                    <li class="link">
-                        <a href="#">
-                            Menu Item
-                        </a>
-                    </li>
-                    <li class="link">
-                        <a href="#">
-                            Menu Item
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li class="link">
-                        <a href="#">
-                            Logout
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="item dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="badge">156</span>
-                    <i class="fa fa-bell-o"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li class="dropdown-header">
-                        Notifications
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">Server Down!</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+
+        {{ render_menu('admin_navbar') }}
     </div>
 </div>
