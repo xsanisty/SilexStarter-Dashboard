@@ -2,15 +2,6 @@
 
 namespace Xsanisty\Admin\Controller;
 
-use Url;
-use View;
-use Asset;
-use Config;
-use Session;
-use Sentry;
-use Response;
-use Request;
-
 class AdminController
 {
 
@@ -57,7 +48,7 @@ class AdminController
             return Response::redirect($redirect ? Url::path($redirect) : Url::to('admin.home'));
 
         } catch (\Exception $e) {
-            Session::flash('message', $e->getMessage());
+            Session::flash('message', 'Invalid login!');
             Session::flash('email', $email);
             Session::flash('redirect', $redirect);
             Session::flash('remember', $remember);
