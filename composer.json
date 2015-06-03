@@ -1,6 +1,17 @@
 {
     "name": "xsanisty/silex-starter-dashboard",
-    "description": "Base admin module for SilexStarter",
+    "description": "Base dashboard module for SilexStarter",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Xsanisty Dev Team",
+            "email": "developers@xsanisty.com"
+        },
+        {
+            "name": "Ikhsan Agustian",
+            "email": "ikhsan017@gmail.com"
+        }
+    ],
     "require": {
         "php": ">= 5.4.0"
     },
@@ -11,12 +22,5 @@
             ]
         }
     },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Ikhsan Agustian",
-            "email": "ikhsan017@gmail.com"
-        }
-    ],
     "minimum-stability": "stable"
 }
