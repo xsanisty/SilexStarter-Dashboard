@@ -25,7 +25,7 @@ class ModuleProvider implements ModuleProviderInterface
             [
                 'author_name'   => 'Xsanisty Development Team',
                 'author_email'  => 'developers@xsanisty.com',
-                'repository'    => 'https://github.com/xsanisty/SilexStarter-BaseAdmin',
+                'repository'    => 'https://github.com/xsanisty/SilexStarter-Dashboard',
                 'name'          => 'Xsanisty Dashboard Module',
             ]
         );
