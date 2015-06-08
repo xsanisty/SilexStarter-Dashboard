@@ -12,7 +12,7 @@
         {% block title %}{{ title | default('Dashboard') }}{% endblock %}
     </title>
 
-    {% block header %}
+    {% block stylesheet %}
     {{ stylesheet([
         '@xsanisty-dashboard/css/bootstrap.min.css',
         '@xsanisty-dashboard/css/font-awesome.min.css',
@@ -44,7 +44,7 @@
         </div>
     </div>
 
-    {% block script %}
+    {% block javascript %}
     {{ javascript([
         '@xsanisty-dashboard/js/jquery.min.js',
         '@xsanisty-dashboard/js/bootstrap.min.js',
