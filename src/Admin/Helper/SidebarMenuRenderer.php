@@ -19,10 +19,10 @@ class SidebarMenuRenderer implements MenuRendererInterface
         $format = '<li class="%s" id="%s"><a href="%s">%s  %s</a> %s </li>';
         $html   = ($menu->getLevel() == 0) ?
                 '<ul class="sidebar"><li class="sidebar-main" id="toggle">
-                  <a href="#">
-                    Dashboard
-                    <span class="menu-icon glyphicon glyphicon-transfer"></span>
-                  </a>
+                    <a href="javascript:void(0)">
+                        Dashboard
+                        <span class="menu-icon glyphicon glyphicon-transfer"></span>
+                    </a>
                 </li>' : '';
 
         foreach ($menu->getItems() as $item) {
@@ -32,7 +32,7 @@ class SidebarMenuRenderer implements MenuRendererInterface
             } else {
                 $html .= sprintf(
                     $format,
-                    $item->getAttribute('class'). ' sidebar-list',
+                    $item->getAttribute('class'). ' sidebar-list '.($item->isActive() ? 'active' : ''),
                     $item->getAttribute('id'),
                     Url::to($item->getAttribute('url')),
                     $item->getAttribute('label'),
