@@ -16,7 +16,7 @@ class SidebarMenuRenderer implements MenuRendererInterface
 
     protected function generateHtml(MenuContainer $menu)
     {
-        $format = '<li class="%s" id="%s"><a href="%s">%s  %s</a> %s </li>';
+        $format = '<li class="%s" id="%s"><a href="%s" title="%s">%s  %s</a> %s </li>';
         $html   = ($menu->getLevel() == 0) ?
                 '<ul class="sidebar"><li class="sidebar-main" id="toggle">
                     <a href="javascript:void(0)">
@@ -35,6 +35,7 @@ class SidebarMenuRenderer implements MenuRendererInterface
                     $item->getAttribute('class'). ' sidebar-list '.($item->isActive() ? 'active' : ''),
                     $item->getAttribute('id'),
                     Url::to($item->getAttribute('url')),
+                    $item->getAttribute('title'),
                     $item->getAttribute('label'),
                     ($item->getAttribute('icon')) ? '<span class="menu-icon glyphicon glyphicon-'.$item->getAttribute('icon').'"></span>' : '',
                     $this->generateHtml($item->getChildContainer())
