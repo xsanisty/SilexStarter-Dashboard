@@ -12,6 +12,10 @@ class AdminController
         return View::make('@xsanisty-dashboard/'.Config::get('@xsanisty-dashboard.config.template').'/index');
     }
 
+    /**
+     * Display login form
+     * @return Response
+     */
     public function login()
     {
         return View::make(
@@ -24,6 +28,10 @@ class AdminController
         );
     }
 
+    /**
+     * Authenticate given credential against stored credential
+     * @return Response
+     */
     public function authenticate()
     {
         $remember = Request::get('remember', false);
@@ -57,10 +65,32 @@ class AdminController
         }
     }
 
+    /**
+     * Loggout current logged in user
+     * @return Response
+     */
     public function logout()
     {
         Sentry::logout();
 
         return Response::redirect(Url::to('admin.login'));
+    }
+
+    /**
+     * Check if current session has logged in user
+     * @return Response     response with 401 status
+     */
+    public function checkLoggedIn()
+    {
+
+    }
+
+    /**
+     * Check if current session has no logged in user
+     * @return Response
+     */
+    public function checkGuest()
+    {
+
     }
 }
