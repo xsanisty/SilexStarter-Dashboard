@@ -1,29 +1,53 @@
-<div class="modal fade">
+<div class="modal fade" id="silexstarter-about-modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">SilexStarter</h4>
+                <h4>SilexStarter <small>A starter application based on Silex framework</small></h4>
             </div>
             <div class="modal-body">
-                <h4 class="text-center">SilexStarter</h4>
+                <p>
+                    SilexStarter is a starter application built on top of Silex framework and several components, developed at
+                    <a href="http://xsanisty.com" target="_blank">xsanisty</a> as the base of our application.
+                </p>
+                <p>
+                    SilexStarter is built on top of these components
+                    <ul>
+                        <li>Silex Micro Framework <small> - A micro framework based on Symfony components</small></li>
+                        <li>Eloquent ORM <small> - Laravel's Active Record ORM</small></li>
+                        <li>Twig Template Engine <small> - Twig templating engine</small></li>
+                        <li>Cartalyst Sentry <small> - Authentication library by <a href="https://cartalyst.com/manual/sentry/2.1" target="_blank">Cartalyst</a></small></li>
+                        <li>Symfony Console <small> - Symfony console component</small></li>
+                        <li>XStatic <small> - Static proxy interface by <a href="twitter.com/jeremeamia" target="_blank">@jeremeamia</a></small></li>
+                    </ul>
+                </p>
+
+                {#
+                <p><small>
+                    Change this page in <code>vendor/xsanisty/silex-starter-dashboard/Admin/Resources/views/default/about.twig</code>
+                </small></p>
+                #}
             </div>
             <div class="modal-footer">
-                <a class="btn btn-default">
-                    <i class="fa fa-fw fa-github"></i> Github
-                </a>
-                <a class="btn btn-default">
-                    <i class="fa fa-fw fa-twitter"></i> Twitter
-                </a>
-                <a class="btn btn-default">
-                    <i class="fa fa-fw fa-facebook"></i> Facebook
-                </a>
-                <a class="btn btn-default">
-                    <i class="fa fa-fw fa-web"></i> Website
-                </a>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <div class="col-md-3">
+                    Follow us on
+                </div>
+                <div class="col-md-9">
+                    <a class="btn btn-sm btn-default"  target="_blank" href="https://github.com/xsanisty/SilexStarter">
+                        <i class="fa fa-fw fa-github"></i> Github
+                    </a>
+                    <a class="btn btn-sm btn-info"  target="_blank" href="https://twitter.com/xsanisty">
+                        <i class="fa fa-fw fa-twitter"></i> Twitter
+                    </a>
+                    <a class="btn btn-sm btn-primary"  target="_blank" href="https://www.facebook.com/xsanisty">
+                        <i class="fa fa-fw fa-facebook"></i> Facebook
+                    </a>
+                    <a class="btn btn-sm btn-success"  target="_blank" href="http://www.xsanisty.com/project/silex-starter">
+                        <i class="fa fa-fw fa-globe"></i> Website
+                    </a>
+                </div>
             </div>
         </div>
     </div>

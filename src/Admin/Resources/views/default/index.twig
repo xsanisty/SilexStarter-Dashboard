@@ -43,13 +43,15 @@
             </div>
         </div>
     </div>
+    {% include '@xsanisty-dashboard/'~template~'/about.twig' %}
 
     {% block javascript %}
     {{ javascript([
         '@xsanisty-dashboard/js/jquery.min.js',
         '@xsanisty-dashboard/js/bootstrap.min.js',
         '@xsanisty-dashboard/js/jquery.cookie.js',
-        '@xsanisty-dashboard/js/jquery/bootstrap.js'
+        '@xsanisty-dashboard/js/dashboard.js',
+        '@xsanisty-dashboard/js/jquery/bootstrap.js',
     ]) }}
     {{ javascript() }}
     {% endblock %}
