@@ -33,7 +33,7 @@ class ModuleProvider implements ModuleProviderInterface
 
     public function getModuleIdentifier()
     {
-        return 'xsanisty-dashboard';
+        return 'silexstarter-dashboard';
     }
 
     public function getRequiredModules()
