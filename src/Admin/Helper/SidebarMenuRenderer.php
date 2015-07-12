@@ -37,7 +37,7 @@ class SidebarMenuRenderer implements MenuRendererInterface
                     Url::to($item->getAttribute('url')),
                     $item->getAttribute('title'),
                     $item->getAttribute('label'),
-                    ($item->getAttribute('icon')) ? '<span class="menu-icon glyphicon glyphicon-'.$item->getAttribute('icon').'"></span>' : '',
+                    ($item->getAttribute('icon')) ? '<i class="menu-icon fa fa-fw fa-'.$item->getAttribute('icon').'"></i>' : '',
                     $this->generateHtml($item->getChildContainer())
                 );
             }
