@@ -1,4 +1,4 @@
-{% set template = config.get('@xsanisty-dashboard.config.template') %}
+{% set template = config.get('@silexstarter-dashboard.config.template') %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,10 +14,10 @@
 
     {% block stylesheet %}
     {{ stylesheet([
-        '@xsanisty-dashboard/css/bootstrap.min.css',
-        '@xsanisty-dashboard/css/font-awesome.min.css',
-        '@xsanisty-dashboard/css/dashboard/dashboard.css',
-        '@xsanisty-dashboard/css/themes/blue.css',
+        '@silexstarter-dashboard/css/bootstrap.min.css',
+        '@silexstarter-dashboard/css/font-awesome.min.css',
+        '@silexstarter-dashboard/css/dashboard/dashboard.css',
+        '@silexstarter-dashboard/css/themes/blue.css',
     ]) }}
 
     {{ stylesheet() }}
@@ -28,14 +28,14 @@
 
         {# sidebar #}
         {% block sidebar %}
-            {% include '@xsanisty-dashboard/'~ template ~'/sidebar.twig' %}
+            {% include '@silexstarter-dashboard/'~ template ~'/sidebar.twig' %}
         {% endblock %}
 
         <div id="content-wrapper">
             <div class="page-content">
                 {# header #}
                 {% block topbar %}
-                    {% include '@xsanisty-dashboard/'~ template ~'/topbar.twig' %}
+                    {% include '@silexstarter-dashboard/'~ template ~'/topbar.twig' %}
                 {% endblock %}
 
                 {% block content %}{% endblock %}
@@ -43,15 +43,15 @@
             </div>
         </div>
     </div>
-    {% include '@xsanisty-dashboard/'~template~'/about.twig' %}
+    {% include '@silexstarter-dashboard/'~template~'/about.twig' %}
 
     {% block javascript %}
     {{ javascript([
-        '@xsanisty-dashboard/js/jquery.min.js',
-        '@xsanisty-dashboard/js/bootstrap.min.js',
-        '@xsanisty-dashboard/js/jquery.cookie.js',
-        '@xsanisty-dashboard/js/dashboard.js',
-        '@xsanisty-dashboard/js/jquery/bootstrap.js',
+        '@silexstarter-dashboard/js/jquery.min.js',
+        '@silexstarter-dashboard/js/bootstrap.min.js',
+        '@silexstarter-dashboard/js/jquery.cookie.js',
+        '@silexstarter-dashboard/js/dashboard.js',
+        '@silexstarter-dashboard/js/jquery/bootstrap.js',
     ]) }}
     {{ javascript() }}
     {% endblock %}
