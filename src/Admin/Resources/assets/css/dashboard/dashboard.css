@@ -344,3 +344,8 @@
   .message-heading {
     font-size: 17px !important;
   }
+
+  /* navbar */
+  .dropdown-menu li i{
+    line-height: 22px !important
+  }
