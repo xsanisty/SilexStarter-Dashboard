@@ -9,7 +9,7 @@ class AdminController
 
     public function index()
     {
-        return View::make('@xsanisty-dashboard/'.Config::get('@xsanisty-dashboard.config.template').'/index');
+        return View::make('@silexstarter-dashboard/'.Config::get('@silexstarter-dashboard.config.template').'/index');
     }
 
     /**
@@ -19,7 +19,7 @@ class AdminController
     public function login()
     {
         return View::make(
-            '@xsanisty-dashboard/'.Config::get('@xsanisty-dashboard.config.template').'/login',
+            '@silexstarter-dashboard/'.Config::get('@silexstarter-dashboard.config.template').'/login',
             [
                 'message'   => Session::getFlash('message'),
                 'email'     => Session::getFlash('email'),

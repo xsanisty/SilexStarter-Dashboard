@@ -57,7 +57,7 @@ class NavbarMenuRenderer implements MenuRendererInterface
                         $link,
                         $item->getAttribute('class'),
                         $item->getAttribute('url'),
-                        $item->getAttribute('icon') ? 'fa fa-fw fa-'.$item->getAttribute('icon') : '',
+                        $item->getAttribute('icon') ? '<i class="fa fa-'.$item->getAttribute('icon').' fa-fw"></i>' : '',
                         $item->getAttribute('label')
                     );
                     break;
