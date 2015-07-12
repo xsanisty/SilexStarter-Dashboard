@@ -9,7 +9,7 @@ use SilexStarter\Contracts\ModuleProviderInterface;
 use Xsanisty\Admin\Helper\SidebarMenuRenderer;
 use Xsanisty\Admin\Helper\NavbarMenuRenderer;
 
-class ModuleProvider implements ModuleProviderInterface
+class DashboardModule implements ModuleProviderInterface
 {
 
     protected $app;
