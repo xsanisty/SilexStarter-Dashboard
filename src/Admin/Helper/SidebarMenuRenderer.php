@@ -21,7 +21,7 @@ class SidebarMenuRenderer implements MenuRendererInterface
                 '<ul class="sidebar"><li class="sidebar-main" id="toggle">
                     <a href="javascript:void(0)">
                         Dashboard
-                        <span class="menu-icon glyphicon glyphicon-transfer"></span>
+                        <span class="menu-icon fa fa-fw fa-exchange"></span>
                     </a>
                 </li>' : '';
 
