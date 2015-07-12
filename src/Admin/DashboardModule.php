@@ -58,7 +58,7 @@ class DashboardModule implements ModuleProviderInterface
     public function register()
     {
         $this->app->registerServices(
-            $this->app['config']['@xsanisty-dashboard.services']
+            $this->app['config']['@silexstarter-dashboard.services']
         );
     }
 
