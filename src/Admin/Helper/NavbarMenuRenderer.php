@@ -39,7 +39,7 @@ class NavbarMenuRenderer implements MenuRendererInterface
     {
         $header = '<li class="%s dropdown-header">%s</li>';
         $divider= '<li class="divider"></li>';
-        $link   = '<li class="%s link"><a href="%s">%s %s</a></li>';
+        $link   = '<li class="%s link"><a id="%s" href="%s">%s %s</a></li>';
         $list   = '';
         $items  = $menu->getItems();
 
@@ -56,6 +56,7 @@ class NavbarMenuRenderer implements MenuRendererInterface
                     $list .= sprintf(
                         $link,
                         $item->getAttribute('class'),
+                        $item->getAttribute('id'),
                         $item->getAttribute('url'),
                         $item->getAttribute('icon') ? '<i class="fa fa-'.$item->getAttribute('icon').' fa-fw"></i>' : '',
                         $item->getAttribute('label')
