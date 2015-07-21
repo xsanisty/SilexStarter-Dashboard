@@ -43,7 +43,10 @@
             </div>
         </div>
     </div>
-    {% include '@silexstarter-dashboard/'~template~'/about.twig' %}
+
+    {% block about %}
+        {% include '@silexstarter-dashboard/'~template~'/about.twig' %}
+    {% endblock %}
 
     {% block javascript %}
     {{ javascript([
