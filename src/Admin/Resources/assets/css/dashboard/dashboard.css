@@ -36,6 +36,10 @@
   .row > div {
     margin-bottom: 15px;
   }
+
+  .widget .row > div {
+    margin-bottom: 0;
+  }
   .alert {
     margin-bottom: 0;
   }
@@ -303,8 +307,12 @@
   .widget .widget-title i {
     margin-right: 5px;
   }
+  .widget .widget-title label{
+    display:block;
+  }
   .widget .widget-title input {
-    width: 25%;
+    width: 70%;
+    font-weight: normal;
   }
   .widget .widget-body {
     padding: 20px;
@@ -323,6 +331,9 @@
   }
   .widget .widget-body table thead {
     background: #fafafa;
+  }
+  .widget .widget-body.flow {
+    overflow-y: auto;
   }
   .widget .widget-body.large {
     height: 350px;
