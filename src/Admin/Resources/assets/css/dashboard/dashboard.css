@@ -382,3 +382,9 @@
   .dropdown-menu li i{
     line-height: 22px !important
   }
+
+  /** modal */
+
+  .modal-header, .modal-body, .modal-footer{
+    padding: 10px ;
+  }
