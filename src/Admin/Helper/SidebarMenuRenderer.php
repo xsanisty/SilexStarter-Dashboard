@@ -13,7 +13,7 @@ class SidebarMenuRenderer implements MenuRendererInterface
     protected $options;
     protected $currentUser;
 
-    public function __construct(AssetManager $assetManager, User $currentUser, array $options)
+    public function __construct(AssetManager $assetManager, User $currentUser = null, array $options = [])
     {
         $this->assetManager = $assetManager;
         $this->options = $options;
@@ -46,6 +46,7 @@ class SidebarMenuRenderer implements MenuRendererInterface
         foreach ($menu->getItems() as $item) {
 
             if ($item->permission
+                && $this->user
                 && !$this->user->hasAnyAccess(
                     array_merge(['admin'], (array) $item->permission)
                 )
