@@ -5,17 +5,19 @@ namespace Xsanisty\Admin\Helper;
 use SilexStarter\Contracts\MenuRendererInterface;
 use SilexStarter\Menu\MenuContainer;
 use SilexStarter\Asset\AssetManager;
+use Cartalyst\Sentry\Users\Eloquent\User;
 
 class SidebarMenuRenderer implements MenuRendererInterface
 {
-    protected $menu;
     protected $assetManager;
     protected $options;
+    protected $currentUser;
 
-    public function __construct(AssetManager $assetManager, $options)
+    public function __construct(AssetManager $assetManager, User $currentUser, array $options)
     {
         $this->assetManager = $assetManager;
         $this->options = $options;
+        $this->currentUser = $currentUser;
     }
 
     public function render(MenuContainer $menu)
@@ -42,6 +44,15 @@ class SidebarMenuRenderer implements MenuRendererInterface
                 : '';
 
         foreach ($menu->getItems() as $item) {
+
+            if ($item->permission
+                && !$this->user->hasAnyAccess(
+                    array_merge(['admin'], (array) $item->permission)
+                )
+            ) {
+                continue;
+            }
+
             if ($item->hasChildren()) {
                 $html .= '<li class="sidebar-title"><span>'.$item->getAttribute('label').'</span></li>';
                 $html .= $this->generateHtml($item->getChildContainer());

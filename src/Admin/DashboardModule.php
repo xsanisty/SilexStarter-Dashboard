@@ -65,7 +65,13 @@ class DashboardModule implements ModuleProviderInterface
     public function boot()
     {
         $menu   = $this->app['menu_manager']->create('admin_sidebar');
-        $menu->setRenderer(new SidebarMenuRenderer($this->app['asset_manager'], $this->app['config']['@silexstarter-dashboard.config']));
+        $menu->setRenderer(
+            new SidebarMenuRenderer(
+                $this->app['asset_manager'],
+                $this->app['sentry']->getUser(),
+                $this->app['config']['@silexstarter-dashboard.config']
+            )
+        );
 
         $navbar = $this->app['menu_manager']->create('admin_navbar');
         $navbar->setRenderer(new NavbarMenuRenderer);
