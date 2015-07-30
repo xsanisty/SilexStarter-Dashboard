@@ -25,7 +25,7 @@ class NavbarMenuRenderer implements MenuRendererInterface
         foreach ($menu->getItems() as $item) {
             $html .= sprintf(
                 $firstLevel,
-                $item->getAttribute('url'),
+                Url::to($item->getAttribute('url')),
                 $item->getAttribute('icon'),
                 $item->getMetaAttribute('counter') ? '<span class="badge">'.$item->getMetaAttribute('counter').'</span>' : '',
                 $this->createDropdownList($item->getChildContainer())
@@ -57,7 +57,7 @@ class NavbarMenuRenderer implements MenuRendererInterface
                         $link,
                         $item->getAttribute('class'),
                         $item->getAttribute('id'),
-                        $item->getAttribute('url'),
+                        Url::to($item->getAttribute('url')),
                         $item->getAttribute('icon') ? '<i class="fa fa-'.$item->getAttribute('icon').' fa-fw"></i>' : '',
                         $item->getAttribute('label')
                     );
