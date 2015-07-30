@@ -1,12 +1,14 @@
 <div class="row header">
     <div class="col-xs-12">
         <div class="meta pull-left">
+            {% block breadcumb %}
             <div class="page">
                 Dashboard
             </div>
             <div class="breadcrumb-links">
                 Home / Dashboard
             </div>
+            {% endblock %}
         </div>
 
         {{ render_menu('admin_navbar') }}
