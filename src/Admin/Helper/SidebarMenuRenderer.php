@@ -46,8 +46,8 @@ class SidebarMenuRenderer implements MenuRendererInterface
         foreach ($menu->getItems() as $item) {
 
             if ($item->permission
-                && $this->user
-                && !$this->user->hasAnyAccess(
+                && $this->currentUser
+                && !$this->currentUser->hasAnyAccess(
                     array_merge(['admin'], (array) $item->permission)
                 )
             ) {
