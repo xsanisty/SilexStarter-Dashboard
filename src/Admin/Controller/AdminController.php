@@ -2,13 +2,16 @@
 
 namespace Xsanisty\Admin\Controller;
 
-class AdminController
+use SilexStarter\Controller\DispatcherAwareController;
+
+class AdminController extends DispatcherAwareController
 {
 
     protected $request;
 
     public function index()
     {
+        $this->dispatcher->dispatch('dashboard.init');
         return View::make('@silexstarter-dashboard/'.Config::get('@silexstarter-dashboard.config.template').'/index');
     }
 
