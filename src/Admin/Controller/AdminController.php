@@ -3,6 +3,7 @@
 namespace Xsanisty\Admin\Controller;
 
 use SilexStarter\Controller\DispatcherAwareController;
+use Xsanisty\Admin\DashboardModule;
 
 class AdminController extends DispatcherAwareController
 {
@@ -11,7 +12,7 @@ class AdminController extends DispatcherAwareController
 
     public function index()
     {
-        $this->dispatcher->dispatch('dashboard.init');
+        $this->dispatcher->dispatch(DashboardModule::INIT);
         return View::make('@silexstarter-dashboard/'.Config::get('@silexstarter-dashboard.config.template').'/index');
     }
 

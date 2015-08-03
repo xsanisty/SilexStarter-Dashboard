@@ -11,6 +11,7 @@ use Xsanisty\Admin\Helper\NavbarMenuRenderer;
 
 class DashboardModule implements ModuleProviderInterface
 {
+    const INIT = 'dashboard.init';
 
     protected $app;
 
@@ -60,20 +61,27 @@ class DashboardModule implements ModuleProviderInterface
         $this->app->registerServices(
             $this->app['config']['@silexstarter-dashboard.services']
         );
+
+        $menu   = $this->app['menu_manager']->create('admin_sidebar');
+        $navbar = $this->app['menu_manager']->create('admin_navbar');
+
+        $this->app['dispatcher']->addListener(
+            DashboardModule::INIT,
+            function () use ($menu, $navbar) {
+                $menu->setRenderer(
+                    new SidebarMenuRenderer(
+                        $this->app['asset_manager'],
+                        $this->app['sentry']->getUser(),
+                        $this->app['config']['@silexstarter-dashboard.config']
+                    )
+                );
+                $navbar->setRenderer(new NavbarMenuRenderer);
+            }
+        );
     }
 
     public function boot()
     {
-        $menu   = $this->app['menu_manager']->create('admin_sidebar');
-        $menu->setRenderer(
-            new SidebarMenuRenderer(
-                $this->app['asset_manager'],
-                $this->app['sentry']->getUser(),
-                $this->app['config']['@silexstarter-dashboard.config']
-            )
-        );
 
-        $navbar = $this->app['menu_manager']->create('admin_navbar');
-        $navbar->setRenderer(new NavbarMenuRenderer);
     }
 }
