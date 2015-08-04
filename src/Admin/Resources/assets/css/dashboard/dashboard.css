@@ -388,3 +388,8 @@
   .modal-header, .modal-body, .modal-footer{
     padding: 10px ;
   }
+
+  /** input addon */
+  .input-group-addon{
+    padding:6px;
+  }
