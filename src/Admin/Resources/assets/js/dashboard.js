@@ -5,4 +5,6 @@ $(document).ready(function(){
         e.preventDefault();
         $('#silexstarter-about-modal').modal('show');
     });
+
+    $('[data-toggle="tooltip"]').tooltip()
 });
