@@ -35,7 +35,22 @@
             <div class="page-content">
                 {# header #}
                 {% block navbar %}
-                    {% include '@silexstarter-dashboard/'~ template ~'/navbar.twig' %}
+                    <div class="row header">
+                        <div class="col-xs-12">
+                            <div class="meta pull-left">
+                                <div class="page">
+                                    {{ page_title | default('Dashboard') }}
+                                </div>
+                                <div class="breadcrumb-links">
+                                {% block breadcrumb %}
+                                    Home / Dashboard
+                                {% endblock %}
+                                </div>
+                            </div>
+
+                            {{ render_menu('admin_navbar') }}
+                        </div>
+                    </div>
                 {% endblock %}
 
                 {% block content %}{% endblock %}
