@@ -29,7 +29,7 @@ class SidebarMenuRenderer implements MenuRendererInterface
     {
         $format = '<li class="%s" id="%s"><a href="%s" title="%s">%s  %s</a> %s </li>';
 
-        $logo   = isset($this->options['logo'])
+        $logo   = isset($this->options['logo']) && $this->options['logo']
                 ? '<img src="'.$this->assetManager->resolvePath($this->options['logo']).'" style="height:'.$this->options['logo_height'].'px">'
                 : 'Dashboard';
 
