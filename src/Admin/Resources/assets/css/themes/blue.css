@@ -15,7 +15,6 @@ ul.sidebar .sidebar-title {
 	background: #273759;
 }
 .user .badge {
-    left: 1px;
     position: absolute;
     top: 12px;
     font-size:10px;
