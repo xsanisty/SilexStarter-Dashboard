@@ -2,7 +2,7 @@
 
 /** admin route that don't need session checkpoint */
 Route::get(
-    '/admin/login',
+    Config::get('@silexstarter-dashboard.config.admin_prefix') . '/login',
     'Xsanisty\Admin\Controller\AdminController:login',
     [
         'as' => 'admin.login',
@@ -10,12 +10,12 @@ Route::get(
     ]
 );
 
-Route::post('/admin/login', 'Xsanisty\Admin\Controller\AdminController:authenticate', ['as' => 'admin.authenticate']);
-Route::get('/admin/logout', 'Xsanisty\Admin\Controller\AdminController:logout', ['as' => 'admin.logout']);
+Route::post(Config::get('@silexstarter-dashboard.config.admin_prefix') . '/login', 'Xsanisty\Admin\Controller\AdminController:authenticate', ['as' => 'admin.authenticate']);
+Route::get(Config::get('@silexstarter-dashboard.config.admin_prefix') . '/logout', 'Xsanisty\Admin\Controller\AdminController:logout', ['as' => 'admin.logout']);
 
 /** protected admin section */
 Route::group(
-    '/admin',
+    Config::get('@silexstarter-dashboard.config.admin_prefix'),
     function () {
         Route::get('/', 'Xsanisty\Admin\Controller\AdminController:index', ['as' => 'admin.home']);
     },
