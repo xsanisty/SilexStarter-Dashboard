@@ -3,5 +3,6 @@
 return [
     'template'      => 'default',
     'logo'          => '',
-    'logo_height'   => 40
+    'logo_height'   => 40,
+    'admin_prefix'  => '/admin'
 ];
