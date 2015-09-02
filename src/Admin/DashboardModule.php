@@ -27,7 +27,8 @@ class DashboardModule implements ModuleProviderInterface
                 'author_name'   => 'Xsanisty Development Team',
                 'author_email'  => 'developers@xsanisty.com',
                 'repository'    => 'https://github.com/xsanisty/SilexStarter-Dashboard',
-                'name'          => 'Xsanisty Dashboard Module',
+                'name'          => 'SilexStarter Base Dashboard Module',
+                'description'   => 'Provide basic dashboard page and login/logout function'
             ]
         );
     }
@@ -64,10 +65,11 @@ class DashboardModule implements ModuleProviderInterface
 
         $menu   = $this->app['menu_manager']->create('admin_sidebar');
         $navbar = $this->app['menu_manager']->create('admin_navbar');
+        $self   = $this;
 
         $this->app['dispatcher']->addListener(
             DashboardModule::INIT,
-            function () use ($menu, $navbar) {
+            function () use ($menu, $navbar, $self) {
                 $menu->setRenderer(
                     new SidebarMenuRenderer(
                         $this->app['asset_manager'],
@@ -76,7 +78,51 @@ class DashboardModule implements ModuleProviderInterface
                     )
                 );
                 $navbar->setRenderer(new NavbarMenuRenderer);
-            }
+
+                $self->registerNavbarMenu();
+            },
+            5
+        );
+    }
+
+
+    /**
+     * Register menu item to navbar menu
+     */
+    protected function registerNavbarMenu()
+    {
+        $user   = $this->app['sentry']->getUser();
+        $name   = $user ? $user->first_name.' '.$user->last_name : '';
+        $email  = $user ? $user->email : '';
+        $name   = trim($name) ? $name : $email;
+
+
+        $menu = $this->app['menu_manager']->get('admin_navbar')->createItem(
+            'user',
+            [
+                'icon'  => 'user',
+                'url'   => '#user',
+            ]
+        );
+
+        $menu->addChildren(
+            'user-header',
+            [
+                'label' => $name,
+                'class' => 'header'
+            ]
+        );
+
+        $menu->addChildren('logout-divider', [ 'class' => 'divider' ]);
+
+        $menu->addChildren(
+            'user-logout',
+            [
+                'label' => 'Logout',
+                'class' => 'link',
+                'icon'  => 'sign-out',
+                'url'   => 'admin.logout'
+            ]
         );
     }
 
