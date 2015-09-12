@@ -400,6 +400,8 @@
       font-size: 14px;
       line-height: 1.33;
       padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 5px
     }
 
     div.dataTables_length, div.dataTables_filter{
