@@ -393,3 +393,20 @@
   .input-group-addon{
     padding:6px;
   }
+  @media all and (max-width:480px) {
+   .btn-block-sm {
+      width: 100%; display:block;
+      border-radius: 6px;
+      font-size: 14px;
+      line-height: 1.33;
+      padding: 8px;
+    }
+
+    div.dataTables_length, div.dataTables_filter{
+      margin-top: 10px !important;
+      margin-bottom: 10px !important;
+    }
+    div.dataTables_length label {
+      text-align: center !important;
+  }
+}
