@@ -25,9 +25,10 @@ class AdminController extends DispatcherAwareController
         return View::make(
             '@silexstarter-dashboard/'.Config::get('@silexstarter-dashboard.config.template').'/login',
             [
-                'message'   => Session::getFlash('message'),
-                'email'     => Session::getFlash('email'),
-                'remember'  => Session::getFlash('remember'),
+                'message'   => Session::flash('message'),
+                'email'     => Session::flash('email'),
+                'remember'  => Session::flash('remember'),
+                'intended'  => Session::flash('intended')
             ]
         );
     }
@@ -40,7 +41,7 @@ class AdminController extends DispatcherAwareController
     {
         $remember = Request::get('remember', false);
         $email    = Request::get('email');
-        $redirect = Request::get('redirect');
+        $intended = Request::get('intended');
 
         try {
             $credential = array(
@@ -57,12 +58,12 @@ class AdminController extends DispatcherAwareController
                 Sentry::login($user, false);
             }
 
-            return Response::redirect($redirect ? Url::path($redirect) : Url::to('admin.home'));
+            return Response::redirect($intended ?  $intended : Url::to('admin.home'));
 
         } catch (\Exception $e) {
             Session::flash('message', 'Invalid login!');
             Session::flash('email', $email);
-            Session::flash('redirect', $redirect);
+            Session::flash('intended', $intended);
             Session::flash('remember', $remember);
 
             return Response::redirect(Url::to('admin.login'));
