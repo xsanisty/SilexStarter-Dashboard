@@ -59,22 +59,23 @@ class DashboardModule implements ModuleProviderInterface
 
     public function register()
     {
+        $self   = $this;
+
         $this->app->registerServices(
             $this->app['config']['@silexstarter-dashboard.services']
         );
 
-        $menu   = $this->app['menu_manager']->create('admin_sidebar');
-        $navbar = $this->app['menu_manager']->create('admin_navbar');
-        $self   = $this;
-
         $this->app['dispatcher']->addListener(
             DashboardModule::INIT,
-            function () use ($menu, $navbar, $self) {
+            function () use ($self) {
+                $menu   = $self->app['menu_manager']->create('admin_sidebar');
+                $navbar = $self->app['menu_manager']->create('admin_navbar');
+
                 $menu->setRenderer(
                     new SidebarMenuRenderer(
-                        $this->app['asset_manager'],
-                        $this->app['sentry']->getUser(),
-                        $this->app['config']['@silexstarter-dashboard.config']
+                        $self->app['asset_manager'],
+                        $self->app['sentry']->getUser(),
+                        $self->app['config']['@silexstarter-dashboard.config']
                     )
                 );
                 $navbar->setRenderer(new NavbarMenuRenderer);

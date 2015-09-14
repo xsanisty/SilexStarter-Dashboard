@@ -44,10 +44,10 @@ class AdminController extends DispatcherAwareController
         $intended = Request::get('intended');
 
         try {
-            $credential = array(
+            $credential = [
                 'email'     => $email,
                 'password'  => Request::get('password')
-            );
+            ];
 
             // Try to authenticate the user
             $user = Sentry::authenticate($credential, false);
@@ -85,17 +85,36 @@ class AdminController extends DispatcherAwareController
      * Check if current session has logged in user
      * @return Response     response with 401 status
      */
-    public function checkLoggedIn()
+    public function loginCheckpoint()
     {
+        if (!Sentry::check()) {
+            if (Request::ajax()) {
+                return Response::ajax(
+                    'Invalid session!',
+                    401,
+                    false,
+                    [
+                        'code'      => 401,
+                        'message'   => 'Unauthorized Access'
+                    ]
+                );
+            } else {
+                $intended = Url::to(Request::getRequestUri('request'));
 
+                Session::flash('intended', $intended);
+                Response::redirect(Url::to('admin.login'));
+            }
+        }
     }
 
     /**
      * Check if current session has no logged in user
      * @return Response
      */
-    public function checkGuest()
+    public function guestCheckpoint()
     {
-
+        if (Sentry::check()) {
+            return Response::redirect(Url::to('admin.home'));
+        }
     }
 }
