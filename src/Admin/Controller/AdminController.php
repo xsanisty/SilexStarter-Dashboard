@@ -13,7 +13,7 @@ class AdminController extends DispatcherAwareController
     public function index()
     {
         $this->dispatcher->dispatch(DashboardModule::INIT);
-        return View::make('@silexstarter-dashboard/'.Config::get('@silexstarter-dashboard.config.template').'/index');
+        return View::make('@silexstarter-dashboard/'.Config::get('@silexstarter-dashboard.config.template').'/dashboard');
     }
 
     /**
