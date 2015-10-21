@@ -229,8 +229,20 @@
     padding: 18px;
     display: block;
   }
+  .row.header .user{
+    padding-right:20px;
+  }
+
+  .row.header .user .badge {
+      position: absolute;
+      top: 12px;
+      right: 0px;
+      font-size:10px;
+      background-color: #e05d6f !important;
+      color: #fff !important;
+  }
   .row.header .user > .item {
-    min-width: 65px;
+    min-width: 40px;
     height: 60px;
     float: right;
     display: inline-block;
@@ -242,7 +254,7 @@
     display: block;
   }
   .row.header .user > .item i {
-    font-size: 15px;
+    font-size: 20px;
     line-height: 55px;
   }
   .row.header .user > .item img {
@@ -282,10 +294,11 @@
   }
   .row.header .user > .item ul.dropdown-menu li.link {
     text-align: left;
+    position: relative;
   }
   .row.header .user > .item ul.dropdown-menu li.link a {
     padding-left: 7px;
-    padding-right: 7px;
+    padding-right: 22px;
   }
 
   /* Widgets */
