@@ -9,29 +9,30 @@ App::filter(
         if (!Sentry::check()) {
             if (Request::ajax()) {
                 return Response::ajax(
-                    'Invalid session!',
+                    'Unauthorized Access',
                     401,
-                    false,
                     [
                         'code'      => 401,
                         'message'   => 'Unauthorized Access'
                     ]
                 );
             } else {
-                $intended = Url::to(Request::getRequestUri('request'));
+                $intended = App::make('request')->getRequestUri();
 
                 Session::flash('intended', $intended);
-                Response::redirect(Url::to('admin.login'));
+
+                return Response::redirect(Url::to('admin.login', [], true));
             }
         }
     }
 );
 
+/** redirect to admin page if trying to access login page on valid session */
 App::filter(
     'admin.guest',
     function () {
         if (Sentry::check()) {
-            return Response::redirect(Url::to('admin.home'));
+            return Response::redirect(Url::to('admin.home', [], true));
         }
     }
 );
