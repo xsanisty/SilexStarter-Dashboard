@@ -15,7 +15,7 @@ class NavbarMenuRenderer implements MenuRendererInterface
     protected function generateHtml(MenuContainer $menu)
     {
         $html       = '';
-        $firstLevel = '<div class="item dropdown">'.
+        $firstLevel = '<div class="item dropdown %s" id="%s">'.
                         '<a href="%s" class="dropdown-toggle" data-toggle="dropdown">'.
                             '<i class="fa fa-%s fa-fw"></i>%s'.
                         '</a>'.
@@ -25,7 +25,9 @@ class NavbarMenuRenderer implements MenuRendererInterface
         foreach ($menu->getItems() as $item) {
             $html .= sprintf(
                 $firstLevel,
-                Url::to($item->getAttribute('url')),
+                $item->getAttribute('class'),
+                $item->getAttribute('id'),
+                $item->getAttribute('url') ? $item->getAttribute('url') : 'javascript:void(0);',
                 $item->getAttribute('icon'),
                 $item->getMetaAttribute('counter') ? '<span class="badge">'.$item->getMetaAttribute('counter').'</span>' : '',
                 $this->createDropdownList($item->getChildContainer())
@@ -48,7 +50,7 @@ class NavbarMenuRenderer implements MenuRendererInterface
         }
 
         foreach ($items as $item) {
-            switch ($item->getAttribute('class')) {
+            switch ($item->getMetaAttribute('type')) {
                 case 'divider':
                     $list .= $divider;
                     break;
@@ -57,7 +59,7 @@ class NavbarMenuRenderer implements MenuRendererInterface
                         $link,
                         $item->getAttribute('class'),
                         $item->getAttribute('id'),
-                        Url::to($item->getAttribute('url')),
+                        $item->getAttribute('url') ? $item->getAttribute('url') : 'javascript:void(0);',
                         $item->getAttribute('icon') ? '<i class="fa fa-'.$item->getAttribute('icon').' fa-fw"></i>' : '',
                         $item->getAttribute('label')
                     );
