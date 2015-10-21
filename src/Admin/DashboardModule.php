@@ -81,6 +81,7 @@ class DashboardModule implements ModuleProviderInterface
                 $navbar->setRenderer(new NavbarMenuRenderer);
 
                 $self->registerNavbarMenu();
+                Asset::exportVariable('base_url', Url::path('/', true));
             },
             5
         );
@@ -110,19 +111,20 @@ class DashboardModule implements ModuleProviderInterface
             'user-header',
             [
                 'label' => $name,
-                'class' => 'header'
+                'meta'  => ['type' => 'header']
+
             ]
         );
 
-        $menu->addChildren('logout-divider', [ 'class' => 'divider' ]);
+        $menu->addChildren('logout-divider', ['meta' => ['type' => 'divider']]);
 
         $menu->addChildren(
             'user-logout',
             [
                 'label' => 'Logout',
-                'class' => 'link',
                 'icon'  => 'sign-out',
-                'url'   => 'admin.logout'
+                'url'   => Url::to('admin.logout'),
+                'meta'  => ['type' => 'link']
             ]
         );
     }
