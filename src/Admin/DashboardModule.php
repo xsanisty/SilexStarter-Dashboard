@@ -126,7 +126,7 @@ class DashboardModule implements ModuleProviderInterface
                 $menu->setRenderer(
                     new $sidebarRenderer(
                         $self->app['asset_manager'],
-                        $self->app['sentry']->getUser(),
+                        $self->app['user'],
                         Config::get('@silexstarter-dashboard.config')
                     )
                 );
@@ -134,7 +134,7 @@ class DashboardModule implements ModuleProviderInterface
                 $navbar->setRenderer(
                     new $navbarRenderer(
                         $self->app['asset_manager'],
-                        $self->app['sentry']->getUser(),
+                        $self->app['user'],
                         Config::get('@silexstarter-dashboard.config')
                     )
                 );
@@ -142,7 +142,7 @@ class DashboardModule implements ModuleProviderInterface
                 $breadcrumb->setRenderer(
                     new $breadcrumbRenderer(
                         $self->app['asset_manager'],
-                        $self->app['sentry']->getUser(),
+                        $self->app['user'],
                         Config::get('@silexstarter-dashboard.config')
                     )
                 );
@@ -171,7 +171,7 @@ class DashboardModule implements ModuleProviderInterface
      */
     protected function registerNavbarMenu()
     {
-        $user   = $this->app['sentry']->getUser();
+        $user   = $this->app['user'];
         $name   = $user ? $user->first_name.' '.$user->last_name : '';
         $email  = $user ? $user->email : '';
         $name   = trim($name) ? $name : $email;
