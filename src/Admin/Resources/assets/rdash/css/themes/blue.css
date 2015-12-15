@@ -1,0 +1,26 @@
+ul.sidebar .sidebar-main a, .sidebar-footer, ul.sidebar .sidebar-list a:hover {
+	background: #273759;
+}
+
+li.sidebar-title{
+    cursor: pointer;
+}
+#sidebar-wrapper {
+	background: #30426a;
+}
+ul.sidebar .sidebar-title {
+	color: #627cb7;
+}
+#page-wrapper:not(.active) ul.sidebar .sidebar-title.separator {
+	background: #273759;
+}
+
+ul.sidebar .active a{
+    color: #fff;
+    border-left: 3px solid lightgreen;
+    text-indent: 22px;
+    background: #273759;
+}
+ul.sidebar .active a .menu-icon {
+    text-indent: 25px;
+}
