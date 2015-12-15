@@ -62,7 +62,7 @@ class SidebarMenuRenderer implements MenuRendererInterface
                     $format,
                     $item->getAttribute('class'). ' sidebar-list '.($item->isActive() ? 'active' : ''),
                     $item->getAttribute('id'),
-                    Url::to($item->getAttribute('url')),
+                    $item->getAttribute('url'),
                     $item->getAttribute('title'),
                     $item->getAttribute('label'),
                     ($item->getAttribute('icon')) ? '<i class="menu-icon fa fa-fw fa-'.$item->getAttribute('icon').'"></i>' : '',

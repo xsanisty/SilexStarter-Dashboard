@@ -4,9 +4,22 @@ namespace Xsanisty\Admin\Helper;
 
 use SilexStarter\Contracts\MenuRendererInterface;
 use SilexStarter\Menu\MenuContainer;
+use SilexStarter\Asset\AssetManager;
+use Cartalyst\Sentry\Users\Eloquent\User;
 
 class NavbarMenuRenderer implements MenuRendererInterface
 {
+    protected $assetManager;
+    protected $options;
+    protected $currentUser;
+
+    public function __construct(AssetManager $assetManager, User $currentUser = null, array $options = [])
+    {
+        $this->assetManager = $assetManager;
+        $this->options = $options;
+        $this->currentUser = $currentUser;
+    }
+
     public function render(MenuContainer $menu)
     {
         return $this->generateHtml($menu);
