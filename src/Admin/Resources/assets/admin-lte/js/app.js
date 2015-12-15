@@ -7,13 +7,23 @@
  * @Author  Almsaeed Studio
  * @Support <http://www.almsaeedstudio.com>
  * @Email   <support@almsaeedstudio.com>
- * @version 2.3.1
+ * @version 2.3.2
  * @license MIT <http://opensource.org/licenses/MIT>
  */
 
 //Make sure jQuery has been loaded before app.js
 if (typeof jQuery === "undefined") {
   throw new Error("AdminLTE requires jQuery");
+}
+
+function setCookie(name,value,days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
 }
 
 /* AdminLTE
@@ -321,8 +331,10 @@ function _init() {
         if ($(window).width() > (screenSizes.sm - 1)) {
           if ($("body").hasClass('sidebar-collapse')) {
             $("body").removeClass('sidebar-collapse').trigger('expanded.pushMenu');
+            setCookie('sidebar-collapse', 0, 7);
           } else {
             $("body").addClass('sidebar-collapse').trigger('collapsed.pushMenu');
+            setCookie('sidebar-collapse', 1, 7);
           }
         }
         //Handle sidebar push menu for small screens

@@ -14,7 +14,7 @@
   font-family: 'Source Sans Pro';
   font-style: normal;
   font-weight: 600;
-  src: local('Source Sans Pro Semibold'), local('SourceSansPro-Semibold'), url('../fonts/SourceSansPro-Semibold') format('woff2');
+  src: local('Source Sans Pro Semibold'), local('SourceSansPro-Semibold'), url('../fonts/SourceSansPro-Semibold.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Source Sans Pro';
