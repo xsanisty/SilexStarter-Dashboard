@@ -1,0 +1,75 @@
+{% set template = config.get('@silexstarter-dashboard.config.template') %}
+{% set templateCfg = config.get('@silexstarter-dashboard.config.templates.'~template) %}
+<!doctype html>
+<html lang="en">
+<head>
+
+    {% block meta %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock %}
+
+    <title>
+        {% block title %}{{ title | default('Dashboard') }}{% endblock %}
+    </title>
+
+    {% block stylesheet %}
+        {{ stylesheet([
+            "@silexstarter-dashboard/admin-lte/css/bootstrap.min.css",
+            "@silexstarter-dashboard/admin-lte/css/font-awesome.min.css",
+            "@silexstarter-dashboard/admin-lte/css/google-font.css",
+            "@silexstarter-dashboard/admin-lte/css/AdminLTE.min.css",
+            "@silexstarter-dashboard/admin-lte/css/skins/skin-" ~ templateCfg.skin ~ ".min.css",
+        ]) }}
+
+        {{ stylesheet() }}
+    {% endblock %}
+
+    {{ variable('global') }}
+</head>
+<body class="skin-{{templateCfg.skin}} hold-transition sidebar-mini {% if cookie('sidebar-collapse') == '1' %}sidebar-collapse{% endif %}">
+    <div id="wrapper">
+        {# header #}
+        {% block navbar %}
+            {% include '@silexstarter-dashboard/'~ template ~'/navbar.twig' %}
+        {% endblock %}
+
+        {# sidebar #}
+        {% block sidebar %}
+            {% include '@silexstarter-dashboard/'~ template ~'/sidebar.twig' %}
+        {% endblock %}
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>
+                    {{ page_title | default('') }}
+                    <small>{{ page_description | default('') }}</small>
+                </h1>
+                {% block breadcrumb %}
+                    {{ render_menu('admin_breadcrumb') }}
+                {% endblock %}
+            </section>
+
+            <section class="content">
+
+                {% block content %}{% endblock %}
+
+            </section>
+          </div>
+    </div>
+
+    {% block modal %}
+        {% include '@silexstarter-dashboard/'~template~'/about.twig' %}
+    {% endblock %}
+
+    {% block javascript %}
+    {{ javascript([
+        "@silexstarter-dashboard/admin-lte/plugins/jQuery/jQuery-2.1.4.min.js",
+        "@silexstarter-dashboard/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js",
+        "@silexstarter-dashboard/admin-lte/js/bootstrap.min.js",
+        "@silexstarter-dashboard/admin-lte/js/app.js",
+    ]) }}
+    {{ javascript() }}
+    {% endblock %}
+</body>
+</html>

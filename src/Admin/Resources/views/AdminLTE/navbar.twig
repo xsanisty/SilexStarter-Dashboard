@@ -1,0 +1,35 @@
+<header class="main-header">
+    {#-- Logo --#}
+    <a href="{{url_for('admin.home')}}" class="logo">
+        {% if config.get('@silexstarter-dashboard.config.use_logo') %}
+            <img
+                src="{{asset(config.get('@silexstarter-dashboard.config.logo_mini'))}}"
+                alt="{{config.get('@silexstarter-dashboard.config.logo_mini_alt')}}"
+                style="height: {{config.get('@silexstarter-dashboard.config.logo_height')}}px; margin:5px auto auto"
+                class="logo-mini"
+            >
+            <img
+                src="{{asset(config.get('@silexstarter-dashboard.config.logo'))}}"
+                alt="{{config.get('@silexstarter-dashboard.config.logo_alt')}}"
+                style="height: {{config.get('@silexstarter-dashboard.config.logo_height')}}px; margin:5px auto auto"
+                class="logo-lg"
+            >
+        {% else %}
+            <span class="logo-mini">{{config.get('@silexstarter-dashboard.config.logo_mini_alt') | raw }}</span>
+            <span class="logo-lg">{{config.get('@silexstarter-dashboard.config.logo_alt') | raw }}</span>
+        {% endif %}
+    </a>
+
+    {#-- Header Navbar: style can be found in header.less --#}
+    <nav class="navbar navbar-static-top" role="navigation">
+      {#-- Sidebar toggle button--#}
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+
+        <div class="navbar-custom-menu">{{render_menu('admin_navbar')}}</div>
+    </nav>
+</header>

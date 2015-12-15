@@ -1,0 +1,24 @@
+{% set template = config.get('@silexstarter-dashboard.config.template') %}
+{% extends '@silexstarter-dashboard/'~ template ~'/index.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="widget">
+                <div class="widget-title">
+                    <i class="fa fa-fw fa-info"></i>
+                    Dashboard Info
+                </div>
+                <div class="widget-body flow">
+                    <div class="row col-md-12">
+                        You can modify this page by running following command
+                        <pre>php xpress module:publish-template silexstarter-dashboard</pre>
+
+                        and start editing the following file
+                        <pre>app/views/module/silexstarter-dashboard/default/dashboard.twig</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
