@@ -10,8 +10,17 @@ Route::get(
     ]
 );
 
-Route::post(Config::get('@silexstarter-dashboard.config.admin_prefix') . '/login', 'Xsanisty\Admin\Controller\AdminController:authenticate', ['as' => 'admin.authenticate']);
-Route::get(Config::get('@silexstarter-dashboard.config.admin_prefix') . '/logout', 'Xsanisty\Admin\Controller\AdminController:logout', ['as' => 'admin.logout']);
+Route::post(
+    Config::get('@silexstarter-dashboard.config.admin_prefix') . '/login',
+    'Xsanisty\Admin\Controller\AdminController:authenticate',
+    ['as' => 'admin.authenticate']
+);
+
+Route::get(
+    Config::get('@silexstarter-dashboard.config.admin_prefix') . '/logout',
+    'Xsanisty\Admin\Controller\AdminController:logout',
+    ['as' => 'admin.logout']
+);
 
 /** protected admin section */
 Route::group(
