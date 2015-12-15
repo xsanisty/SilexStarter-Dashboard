@@ -15,11 +15,33 @@ class DashboardModule implements ModuleProviderInterface
 
     protected $app;
 
+    /**
+     * {@inheritdoc}
+     */
     public function __construct(Application $app)
     {
         $this->app = $app;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function getModuleIdentifier()
+    {
+        return 'silexstarter-dashboard';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRequiredModules()
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getInfo()
     {
         return new ModuleInfo(
@@ -33,16 +55,9 @@ class DashboardModule implements ModuleProviderInterface
         );
     }
 
-    public function getModuleIdentifier()
-    {
-        return 'silexstarter-dashboard';
-    }
-
-    public function getRequiredModules()
-    {
-        return [];
-    }
-
+    /**
+     * {@inheritdoc}
+     */
     public function getResources()
     {
         return new ModuleResource(
@@ -57,6 +72,35 @@ class DashboardModule implements ModuleProviderInterface
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function getRequiredPermissions()
+    {
+        return [
+            'admin' => 'Administrator priviledge'
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function install()
+    {
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function uninstall()
+    {
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function register()
     {
         $self   = $this;
@@ -68,20 +112,54 @@ class DashboardModule implements ModuleProviderInterface
         $this->app['dispatcher']->addListener(
             DashboardModule::INIT,
             function () use ($self) {
-                $menu   = $self->app['menu_manager']->create('admin_sidebar');
-                $navbar = $self->app['menu_manager']->create('admin_navbar');
+                $menu       = $self->app['menu_manager']->create('admin_sidebar');
+                $navbar     = $self->app['menu_manager']->create('admin_navbar');
+                $breadcrumb = $self->app['menu_manager']->create('admin_breadcrumb');
+
+                $template           = Config::get('@silexstarter-dashboard.config.template');
+                $templateConf       = Config::get("@silexstarter-dashboard.config.templates.$template");
+
+                $sidebarRenderer    = $templateConf['sidebar_renderer'];
+                $navbarRenderer     = $templateConf['navbar_renderer'];
+                $breadcrumbRenderer = $templateConf['breadcrumb_renderer'];
 
                 $menu->setRenderer(
-                    new SidebarMenuRenderer(
+                    new $sidebarRenderer(
                         $self->app['asset_manager'],
                         $self->app['sentry']->getUser(),
-                        $self->app['config']['@silexstarter-dashboard.config']
+                        Config::get('@silexstarter-dashboard.config')
                     )
                 );
-                $navbar->setRenderer(new NavbarMenuRenderer);
+
+                $navbar->setRenderer(
+                    new $navbarRenderer(
+                        $self->app['asset_manager'],
+                        $self->app['sentry']->getUser(),
+                        Config::get('@silexstarter-dashboard.config')
+                    )
+                );
+
+                $breadcrumb->setRenderer(
+                    new $breadcrumbRenderer(
+                        $self->app['asset_manager'],
+                        $self->app['sentry']->getUser(),
+                        Config::get('@silexstarter-dashboard.config')
+                    )
+                );
+
+                $breadcrumb->createItem(
+                    'home',
+                    [
+                        'icon'  => 'dashboard',
+                        'url'   => Url::to('admin.home'),
+                        'label' => 'Dashboard'
+                    ]
+                );
 
                 $self->registerNavbarMenu();
-                Asset::exportVariable('base_url', Url::path('/', true));
+                $self->app['asset_manager']->exportVariable('base_url', Url::path('/', true));
+                $self->app['asset_manager']->exportVariable('admin_template', $template);
+                $self->app['asset_manager']->exportVariable('admin_skin', $templateConf['skin']);
             },
             5
         );
@@ -97,26 +175,31 @@ class DashboardModule implements ModuleProviderInterface
         $name   = $user ? $user->first_name.' '.$user->last_name : '';
         $email  = $user ? $user->email : '';
         $name   = trim($name) ? $name : $email;
+        $icon   = $user->profile_pic
+                ? $this->app['asset_manager']->resolvePath('img/profile/' . $user->profile_pic)
+                : $this->app['asset_manager']->resolvePath('@silexstarter-dashboard/img/avatar.jpg');
 
 
-        $menu = $this->app['menu_manager']->get('admin_navbar')->createItem(
+        $menu   = $this->app['menu_manager']->get('admin_navbar')->createItem(
             'user',
             [
                 'icon'  => 'user',
                 'url'   => '#user',
+                'meta'  => [
+                    'renderer' => 'user-menu-renderer'
+                ]
             ]
         );
 
         $menu->addChildren(
             'user-header',
             [
+                'icon'  => $icon,
                 'label' => $name,
                 'meta'  => ['type' => 'header']
 
             ]
         );
-
-        $menu->addChildren('logout-divider', ['meta' => ['type' => 'divider']]);
 
         $menu->addChildren(
             'user-logout',
@@ -129,6 +212,9 @@ class DashboardModule implements ModuleProviderInterface
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function boot()
     {
 
