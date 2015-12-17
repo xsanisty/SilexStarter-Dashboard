@@ -5,13 +5,17 @@ namespace Xsanisty\Admin\Helper;
 use SilexStarter\Contracts\MenuRendererInterface;
 use SilexStarter\Menu\MenuContainer;
 use SilexStarter\Asset\AssetManager;
-use Cartalyst\Sentry\Users\Eloquent\User;
+use Cartalyst\Sentry\Users\UserInterface;
 
 class LteBreadcrumbMenuRenderer implements MenuRendererInterface
 {
-    public function __construct()
-    {
+    protected $currentUser;
+    protected $assetManager;
 
+    public function __construct(AssetManager $assetManager, UserInterface $user)
+    {
+        $this->currentUser  = $user;
+        $this->assetManager = $assetManager;
     }
 
     public function render(MenuContainer $menu)

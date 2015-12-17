@@ -1,0 +1,18 @@
+{% set template = config.get('@silexstarter-dashboard.config.template') %}
+{% set title = '500 Internal Server Error' %}
+{% set page_title = '500 Internal Server Error' %}
+{% extends '@silexstarter-dashboard/'~ template ~'/index.twig' %}
+
+{% block content %}
+    <div class="error-page">
+        <h2 class="headline text-red">500</h2>
+        <div class="error-content">
+            <h3><i class="fa fa-warning text-red"></i> Oops! Something went wrong.</h3>
+
+            <p>
+                We will work on fixing that right away. <br>
+                Meanwhile, you may <a href="{{ url_for('admin.home') }}">return to dashboard</a> or try using the search form.
+            </p>
+        </div>
+    </div>
+{% endblock %}
