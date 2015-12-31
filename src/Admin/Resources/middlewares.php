@@ -31,8 +31,9 @@ App::filter(
 App::filter(
     'admin.guest',
     function () {
+        $default_url = Url::to(Config::get('@silexstarter-dashboard.config.default_page'));
         if (Sentry::check()) {
-            return Response::redirect(Url::to('admin.home', [], true));
+            return Response::redirect($default_url);
         }
     }
 );

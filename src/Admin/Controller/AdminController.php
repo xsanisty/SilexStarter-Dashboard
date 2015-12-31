@@ -58,7 +58,9 @@ class AdminController extends DispatcherAwareController
                 Sentry::login($user, false);
             }
 
-            return Response::redirect($intended ?  $intended : Url::to('admin.home'));
+            $defaultUrl = Url::to(Config::get('@silexstarter-dashboard.config.default_page'));
+
+            return Response::redirect($intended ?  $intended : $defaultUrl);
 
         } catch (\Exception $e) {
             Session::flash('message', 'Invalid login!');

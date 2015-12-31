@@ -9,6 +9,7 @@ return [
     'logo_mini_alt' => 'X',
     'logo_height'   => 35,
     'admin_prefix'  => '/admin',
+    'default_page'  => 'gantt.chart.index',
 
     'templates'     => [
         'RDash'     => [
@@ -21,7 +22,7 @@ return [
             'sidebar_renderer'      => 'Xsanisty\Admin\Helper\LteSidebarMenuRenderer',
             'navbar_renderer'       => 'Xsanisty\Admin\Helper\LteNavbarMenuRenderer',
             'breadcrumb_renderer'   => 'Xsanisty\Admin\Helper\LteBreadcrumbMenuRenderer',
-            'skin'                  => 'blue-light',
+            'skin'                  => 'purple-light',
         ]
     ]
 ];
