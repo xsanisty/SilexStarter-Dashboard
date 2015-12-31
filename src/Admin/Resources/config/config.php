@@ -9,7 +9,7 @@ return [
     'logo_mini_alt' => 'X',
     'logo_height'   => 35,
     'admin_prefix'  => '/admin',
-    'default_page'  => 'gantt.chart.index',
+    'default_page'  => 'admin.home',
 
     'templates'     => [
         'RDash'     => [
