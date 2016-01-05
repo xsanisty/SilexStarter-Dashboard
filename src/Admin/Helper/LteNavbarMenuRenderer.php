@@ -62,17 +62,41 @@ class LteNavbarMenuRenderer implements MenuRendererInterface
         return sprintf($html, $itemList);
     }
 
+    /**
+     * Render menu specified for user account menu
+     */
     protected function addUserMenuRenderer()
     {
         $this->renderer['user-menu-renderer'] = function (MenuItem $item) {
-            $subMenu    = $item->getChildContainer()->getItems();
-            $logoutMenu = $subMenu['user-logout'];
-            $userMenu   = $subMenu['user-header'];
-            $accountMenu= isset($subMenu['user-account']) ? $subMenu['user-account'] : false;
+            $subMenu        = $item->getChildContainer()->getItems();
+            $logoutMenu     = $subMenu['user-logout'];
+            $userMenu       = $subMenu['user-header'];
+            $accountMenu    = isset($subMenu['user-account']) ? $subMenu['user-account'] : false;
+            $subMenuTpl     = '<li class="user-body"> %s </li>';
+            $compiledSubMenu= '';
 
             unset($subMenu['user-logout'], $subMenu['user-header'], $subMenu['user-account']);
 
-            $mainMenuTemplate = '
+            if ($subMenu) {
+                $subMenu = array_chunk($subMenu, 3);
+
+                foreach ($subMenu as $subMenuRow) {
+                    $row    = '<div class="row"> %s </div>';
+                    $col    = '<div class="col-xs-%s text-center"><a href="%s">%s</s></div>';
+                    $grid   = 12 / count($subMenuRow);
+                    $gridMenu = '';
+
+                    foreach ($subMenuRow as $subItem) {
+                        $gridMenu .= sprintf($col, $grid, $subItem->url, $subItem->label);
+                    }
+
+                    $compiledSubMenu .= sprintf($row, $gridMenu);
+                }
+
+                $compiledSubMenu = sprintf($subMenuTpl, $compiledSubMenu);
+            }
+
+            $compiledMainMenu = '
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="'.$userMenu->icon.'" class="user-image" alt="User Image">
@@ -82,8 +106,9 @@ class LteNavbarMenuRenderer implements MenuRendererInterface
                         <li class="user-header">
                             <img src="'.$userMenu->icon.'" class="img-circle" alt="User Image">
                             <p>'.$userMenu->label.'</p>
-                        </li>
-                        <li class="user-footer">'.
+                        </li>'.
+                        $compiledSubMenu
+                        .'<li class="user-footer">'.
                             (
                                 $accountMenu ?
                                 '<div class="pull-left">
@@ -98,10 +123,13 @@ class LteNavbarMenuRenderer implements MenuRendererInterface
                 </li>
             ';
 
-            return $mainMenuTemplate;
+            return $compiledMainMenu;
         };
     }
 
+    /**
+     * Render notification type of menu
+     */
     protected function addNotificationMenuRenderer()
     {
         $this->renderer['notification-menu-renderer'] = function (MenuItem $item) {
@@ -122,9 +150,10 @@ class LteNavbarMenuRenderer implements MenuRendererInterface
                                 %s
                             </ul>
                         </li>
-                        <li class="footer"><a href="#">View all</a></li>
+                        <li class="footer"><a href="'.$item->getMetaAttribute('channel').'">View all</a></li>
                     </ul>
-                </li>';
+                </li>
+            ';
 
             $items          = $item->getChildContainer()->getItems();
             $menuItem       = '';
