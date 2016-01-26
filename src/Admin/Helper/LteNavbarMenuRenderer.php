@@ -82,7 +82,7 @@ class LteNavbarMenuRenderer implements MenuRendererInterface
 
                 foreach ($subMenu as $subMenuRow) {
                     $row    = '<div class="row"> %s </div>';
-                    $col    = '<div class="col-xs-%s text-center"><a href="%s">%s</s></div>';
+                    $col    = '<div class="col-xs-%s text-center"><a href="%s">%s</a></div>';
                     $grid   = 12 / count($subMenuRow);
                     $gridMenu = '';
 
@@ -146,7 +146,7 @@ class LteNavbarMenuRenderer implements MenuRendererInterface
                     <ul class="dropdown-menu">
                         <li class="header">You have '.$item->getMetaAttribute('counter').' notifications</li>
                         <li>
-                            <ul class="menu">
+                            <ul class="menu notification-menu">
                                 %s
                             </ul>
                         </li>

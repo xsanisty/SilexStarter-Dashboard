@@ -27,7 +27,7 @@
 
     {{ variable('global') }}
 </head>
-<body class="skin-{{templateCfg.skin}} hold-transition sidebar-mini {% if cookie('sidebar-collapse') == '1' %}sidebar-collapse{% endif %}">
+<body class="hold-transition sidebar-mini skin-{{templateCfg.skin}} {% if templateCfg.fixed_header %}fixed{% endif %} {% if cookie('sidebar-collapse') == '1' %}sidebar-collapse{% endif %}">
     <div id="wrapper">
         {# header #}
         {% block navbar %}

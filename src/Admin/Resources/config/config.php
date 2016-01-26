@@ -23,6 +23,7 @@ return [
             'navbar_renderer'       => 'Xsanisty\Admin\Helper\LteNavbarMenuRenderer',
             'breadcrumb_renderer'   => 'Xsanisty\Admin\Helper\LteBreadcrumbMenuRenderer',
             'skin'                  => 'purple-light',
+            'fixed_header'          => false
         ]
     ]
 ];
