@@ -3,48 +3,22 @@
 namespace Xsanisty\Admin;
 
 use Silex\Application;
-use SilexStarter\Module\ModuleResource;
 use SilexStarter\Module\ModuleInfo;
-use SilexStarter\Contracts\ModuleProviderInterface;
-use Xsanisty\Admin\Helper\SidebarMenuRenderer;
-use Xsanisty\Admin\Helper\NavbarMenuRenderer;
+use SilexStarter\Module\ModuleResource;
+use SilexStarter\Module\ModuleProvider;
 
-class DashboardModule implements ModuleProviderInterface
+class DashboardModule extends ModuleProvider
 {
     const INIT = 'dashboard.init';
-
-    protected $app;
 
     /**
      * {@inheritdoc}
      */
     public function __construct(Application $app)
     {
-        $this->app = $app;
-    }
+        $this->app  = $app;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getModuleIdentifier()
-    {
-        return 'silexstarter-dashboard';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getRequiredModules()
-    {
-        return [];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getInfo()
-    {
-        return new ModuleInfo(
+        $this->info = new ModuleInfo(
             [
                 'author_name'   => 'Xsanisty Development Team',
                 'author_email'  => 'developers@xsanisty.com',
@@ -53,14 +27,8 @@ class DashboardModule implements ModuleProviderInterface
                 'description'   => 'Provide basic dashboard page and login/logout function'
             ]
         );
-    }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getResources()
-    {
-        return new ModuleResource(
+        $this->resources = new ModuleResource(
             [
                 'routes'        => 'Resources/routes.php',
                 'middlewares'   => 'Resources/middlewares.php',
@@ -75,27 +43,19 @@ class DashboardModule implements ModuleProviderInterface
     /**
      * {@inheritdoc}
      */
+    public function getModuleIdentifier()
+    {
+        return 'silexstarter-dashboard';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getRequiredPermissions()
     {
         return [
             'admin' => 'Administrator priviledge'
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function install()
-    {
-
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function uninstall()
-    {
-
     }
 
     /**
@@ -210,13 +170,5 @@ class DashboardModule implements ModuleProviderInterface
                 'meta'  => ['type' => 'link']
             ]
         );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function boot()
-    {
-
     }
 }
