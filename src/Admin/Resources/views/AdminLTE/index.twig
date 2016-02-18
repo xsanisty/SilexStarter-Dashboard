@@ -55,7 +55,11 @@
                 {% block content %}{% endblock %}
 
             </section>
-          </div>
+        </div>
+
+        {% block footer %}
+            {% include '@silexstarter-dashboard/'~template~'/footer.twig' %}
+        {% endblock %}
     </div>
 
     {% block modal %}

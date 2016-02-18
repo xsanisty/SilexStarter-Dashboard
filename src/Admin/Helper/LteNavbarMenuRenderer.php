@@ -71,11 +71,11 @@ class LteNavbarMenuRenderer implements MenuRendererInterface
             $subMenu        = $item->getChildContainer()->getItems();
             $logoutMenu     = $subMenu['user-logout'];
             $userMenu       = $subMenu['user-header'];
-            $accountMenu    = isset($subMenu['user-account']) ? $subMenu['user-account'] : false;
+            $accountMenu    = isset($subMenu['my-account']) ? $subMenu['my-account'] : false;
             $subMenuTpl     = '<li class="user-body"> %s </li>';
             $compiledSubMenu= '';
 
-            unset($subMenu['user-logout'], $subMenu['user-header'], $subMenu['user-account']);
+            unset($subMenu['user-logout'], $subMenu['user-header'], $subMenu['my-account']);
 
             if ($subMenu) {
                 $subMenu = array_chunk($subMenu, 3);
