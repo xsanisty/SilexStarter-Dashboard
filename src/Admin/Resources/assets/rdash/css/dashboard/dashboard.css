@@ -423,5 +423,11 @@
     }
     div.dataTables_length label {
       text-align: center !important;
+    }
   }
-}
+
+  /** custom */
+  .img-sm{
+    height: 30px !important;
+    width: 30px !important;
+  }

@@ -35,16 +35,14 @@ class LteSidebarMenuRenderer implements MenuRendererInterface
 
             if ($item->permission
                 && $this->currentUser
-                && !$this->currentUser->hasAnyAccess(
-                    array_merge(['admin'], (array) $item->permission)
-                )
+                && !$this->currentUser->hasAnyAccess((array) $item->permission)
             ) {
                 continue;
             }
 
             if ($item->hasChildren()) {
                 $format = '<li class="treeview %s">
-                    <a href="#" title="%s">
+                    <a href="#" title="%s" id="%s">
                         %s
                         <span>%s</span>
                         <i class="fa fa-angle-left pull-right"></i>
@@ -55,6 +53,7 @@ class LteSidebarMenuRenderer implements MenuRendererInterface
                     $format,
                     $item->isActive() || $item->hasActiveChildren() ? 'active' : '',
                     $item->getAttribute('title'),
+                    $item->getAttribute('name'),
                     $item->getAttribute('icon') ? '<i class="fa fa-fw fa-'.$item->getAttribute('icon').'"></i>' : '',
                     $item->getAttribute('label'),
                     $this->generateHtml($item->getChildContainer())

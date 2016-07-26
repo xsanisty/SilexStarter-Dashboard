@@ -252,7 +252,7 @@ function _init() {
       var _this = this;
       _this.fix();
       _this.fixSidebar();
-      $(window, ".wrapper").resize(function () {
+      $(window, '.content-wrapper', '.content').resize(function () {
         _this.fix();
         _this.fixSidebar();
       });
@@ -286,10 +286,12 @@ function _init() {
       }
     },
     fixSidebar: function () {
+      console.log('sidebar fixed');
+      var sidebar_height = $('.content-wrapper').height();
       //Make sure the body tag has the .fixed class
       if (!$("body").hasClass("fixed")) {
         if (typeof $.fn.slimScroll != 'undefined') {
-          $(".sidebar").slimScroll({destroy: true}).height("auto");
+          $(".sidebar").slimScroll({destroy: true}).css('min-height', sidebar_height+'px');
         }
         return;
       } else if (typeof $.fn.slimScroll == 'undefined' && window.console) {
@@ -299,10 +301,10 @@ function _init() {
       if ($.AdminLTE.options.sidebarSlimScroll) {
         if (typeof $.fn.slimScroll != 'undefined') {
           //Destroy if it exists
-          $(".sidebar").slimScroll({destroy: true}).height("auto");
+          $(".sidebar").slimScroll({destroy: true}).css('min-height', sidebar_height+'px');
           //Add slimscroll
-          $(".sidebar").slimscroll({
-            height: ($(window).height() - $(".main-header").height()) + "px",
+          $(".sidebar").slimScroll({
+            height: sidebar_height + "px",
             color: "rgba(0,0,0,0.2)",
             size: "3px"
           });
@@ -714,57 +716,3 @@ function _init() {
   };
 
 })(jQuery);
-
-/*
- * TODO LIST CUSTOM PLUGIN
- * -----------------------
- * This plugin depends on iCheck plugin for checkbox and radio inputs
- *
- * @type plugin
- * @usage $("#todo-widget").todolist( options );
- */
-(function ($) {
-
-  'use strict';
-
-  $.fn.todolist = function (options) {
-    // Render options
-    var settings = $.extend({
-      //When the user checks the input
-      onCheck: function (ele) {
-        return ele;
-      },
-      //When the user unchecks the input
-      onUncheck: function (ele) {
-        return ele;
-      }
-    }, options);
-
-    return this.each(function () {
-
-      if (typeof $.fn.iCheck != 'undefined') {
-        $('input', this).on('ifChecked', function () {
-          var ele = $(this).parents("li").first();
-          ele.toggleClass("done");
-          settings.onCheck.call(ele);
-        });
-
-        $('input', this).on('ifUnchecked', function () {
-          var ele = $(this).parents("li").first();
-          ele.toggleClass("done");
-          settings.onUncheck.call(ele);
-        });
-      } else {
-        $('input', this).on('change', function () {
-          var ele = $(this).parents("li").first();
-          ele.toggleClass("done");
-          if ($('input', ele).is(":checked")) {
-            settings.onCheck.call(ele);
-          } else {
-            settings.onUncheck.call(ele);
-          }
-        });
-      }
-    });
-  };
-}(jQuery));

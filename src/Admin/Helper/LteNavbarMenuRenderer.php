@@ -180,7 +180,39 @@ class LteNavbarMenuRenderer implements MenuRendererInterface
     protected function addGeneralMenuRenderer()
     {
         $this->renderer['general-menu-renderer'] = function (MenuItem $item) {
+            $containerTemplate = '
+                <li class="dropdown notifications-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-'.$item->icon.'"></i> '. $item->label .'
+                    </a>
+                    <ul class="dropdown-menu">
 
+                        <li>
+                            <ul class="menu notification-menu">
+                                %s
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            ';
+
+            $items          = $item->getChildContainer()->getItems();
+            $menuItem       = '';
+            $itemTemplate   = '<li><a href="%s"> <i class="fa fa-%s"></i> %s </a></li>';
+
+
+            foreach ($items as $item) {
+                $menuItem .= sprintf(
+                    $itemTemplate,
+                    $item->url,
+                    $item->icon,
+                    $item->label
+                );
+            }
+
+            $compiledMenu = sprintf($containerTemplate, $menuItem);
+
+            return $compiledMenu;
         };
     }
 }
