@@ -55,7 +55,7 @@ class LteSidebarMenuRenderer implements MenuRendererInterface
                     $format,
                     $item->isActive() || $item->hasActiveChildren() ? 'active' : '',
                     $item->getAttribute('title'),
-                    $item->getAttribute('name'),
+                    $item->getAttribute('id'),
                     $item->getAttribute('icon') ? '<i class="fa fa-fw fa-'.$item->getAttribute('icon').'"></i>' : '',
                     $item->getAttribute('label'),
                     $this->generateHtml($item->getChildContainer())
