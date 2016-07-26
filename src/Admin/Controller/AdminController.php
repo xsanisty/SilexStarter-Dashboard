@@ -22,13 +22,15 @@ class AdminController extends DispatcherAwareController
      */
     public function login()
     {
+        $loginAttr = Config::get('sentry.users.login_attribute');
         return View::make(
             '@silexstarter-dashboard/'.Config::get('@silexstarter-dashboard.config.template').'/login',
             [
-                'message'   => Session::flash('message'),
-                'email'     => Session::flash('email'),
-                'remember'  => Session::flash('remember'),
-                'intended'  => Session::flash('intended')
+                'message'       => Session::flash('message'),
+                'credential'    => [$loginAttr => Session::flash($loginAttr)],
+                'remember'      => Session::flash('remember'),
+                'intended'      => Session::flash('intended'),
+                'login_attr'    => $LoginAttr
             ]
         );
     }
@@ -39,13 +41,14 @@ class AdminController extends DispatcherAwareController
      */
     public function authenticate()
     {
-        $remember = Request::get('remember', false);
-        $email    = Request::get('email');
-        $intended = Request::get('intended');
+        $remember   = Request::get('remember', false);
+        $loginAttr  = Config::get('sentry.users.login_attribute');
+        $login      = Request::get($loginAttr);
+        $intended   = Request::get('intended');
 
         try {
             $credential = [
-                'email'     => $email,
+                $loginAttr  => $login,
                 'password'  => Request::get('password')
             ];
 
@@ -64,7 +67,7 @@ class AdminController extends DispatcherAwareController
 
         } catch (\Exception $e) {
             Session::flash('message', 'Invalid login!');
-            Session::flash('email', $email);
+            Session::flash($loginAttr, $login);
             Session::flash('intended', $intended);
             Session::flash('remember', $remember);
 
