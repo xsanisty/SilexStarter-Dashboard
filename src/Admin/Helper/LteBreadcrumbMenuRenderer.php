@@ -20,7 +20,7 @@ class LteBreadcrumbMenuRenderer implements MenuRendererInterface
 
     public function render(MenuContainer $menu)
     {
-        $format = '<li class="%s"><a href="%s">%s  %s</a></li>';
+        $format = '<li class="%s"><a href="%s" id="%s">%s  %s</a></li>';
         $html   = '<ol class="breadcrumb">';
         $items  = $menu->getItems();
         $last   = count($items);
@@ -30,7 +30,9 @@ class LteBreadcrumbMenuRenderer implements MenuRendererInterface
 
             if ($item->permission
                 && $this->currentUser
-                && !$this->currentUser->hasAnyAccess((array) $item->permission)
+                && !$this->currentUser->hasAnyAccess(
+                    array_merge(['admin'], (array) $item->permission)
+                )
             ) {
                 continue;
             }
@@ -39,6 +41,7 @@ class LteBreadcrumbMenuRenderer implements MenuRendererInterface
                 $format,
                 $item->getAttribute('class'),
                 $index == $last ? 'javascript:void(0)' : $item->getAttribute('url'),
+                $item->getAttribute('name'),
                 $item->getAttribute('icon') ? '<i class="menu-icon fa fa-fw fa-'.$item->getAttribute('icon').'"></i>' : '',
                 $item->getAttribute('label')
             );

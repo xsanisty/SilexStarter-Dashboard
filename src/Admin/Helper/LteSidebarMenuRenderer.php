@@ -35,7 +35,9 @@ class LteSidebarMenuRenderer implements MenuRendererInterface
 
             if ($item->permission
                 && $this->currentUser
-                && !$this->currentUser->hasAnyAccess((array) $item->permission)
+                && !$this->currentUser->hasAnyAccess(
+                    array_merge(['admin'], (array) $item->permission)
+                )
             ) {
                 continue;
             }
