@@ -23,6 +23,7 @@ class AdminController extends DispatcherAwareController
     public function login()
     {
         $loginAttr = Config::get('sentry.users.login_attribute');
+
         return View::make(
             '@silexstarter-dashboard/'.Config::get('@silexstarter-dashboard.config.template').'/login',
             [
@@ -30,7 +31,7 @@ class AdminController extends DispatcherAwareController
                 'credential'    => [$loginAttr => Session::flash($loginAttr)],
                 'remember'      => Session::flash('remember'),
                 'intended'      => Session::flash('intended'),
-                'login_attr'    => $LoginAttr
+                'login_attr'    => $loginAttr
             ]
         );
     }
