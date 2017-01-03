@@ -1,6 +1,6 @@
 <?php
 
-namespace SilexStarter\Admin\Menu;
+namespace Xsanisty\Admin\Menu;
 
 class MenuItem
 {
@@ -28,7 +28,7 @@ class MenuItem
     /**
      * The children menu container.
      *
-     * @var null|SilexStarter\Admin\Menu\ChildMenuContainer
+     * @var null|Xsanisty\Admin\Menu\ChildMenuContainer
      */
     protected $childContainer;
 

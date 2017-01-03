@@ -65,7 +65,6 @@ class DashboardModule extends ModuleProvider
     public function register()
     {
         $self   = $this;
-
         $this->app['dispatcher']->addListener(
             DashboardModule::INIT,
             function () use ($self) {

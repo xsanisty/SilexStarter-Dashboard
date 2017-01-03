@@ -1,8 +1,8 @@
 <?php
 
-namespace SilexStarter\Admin\Menu;
+namespace Xsanisty\Admin\Menu;
 
-use SilexStarter\Admin\Contracts\MenuRendererInterface;
+use Xsanisty\Admin\Contracts\MenuRendererInterface;
 
 class MenuRenderer implements MenuRendererInterface
 {

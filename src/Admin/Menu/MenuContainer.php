@@ -1,24 +1,24 @@
 <?php
 
-namespace SilexStarter\Admin\Menu;
+namespace Xsanisty\Admin\Menu;
 
 use Exception;
 use InvalidArgumentException;
-use SilexStarter\Admin\Contracts\MenuRendererInterface;
+use Xsanisty\Admin\Contracts\MenuRendererInterface;
 
 class MenuContainer
 {
     /**
      * List of menu item.
      *
-     * @var array array of SilexStarter\Admin\Menu\MenuItem
+     * @var array array of Xsanisty\Admin\Menu\MenuItem
      */
     protected $items = [];
 
     /**
      * The menu renderer for rendering the collection.
      *
-     * @var SilexStarter\Admin\Menu\MenuRendererInterface
+     * @var Xsanisty\Admin\Menu\MenuRendererInterface
      */
     protected $renderer;
 
@@ -38,7 +38,7 @@ class MenuContainer
 
     /**
      * Currently active menu item.
-     * @var SilexStarter\Admin\Menu\MenuItem|null
+     * @var Xsanisty\Admin\Menu\MenuItem|null
      */
     protected $activeItem = null;
 
@@ -81,7 +81,7 @@ class MenuContainer
      * @param string $name       MenuItem name
      * @param array  $attributes MenuItem attributes
      *
-     * @return SilexStarter\Admin\Menu\MenuItem
+     * @return Xsanisty\Admin\Menu\MenuItem
      */
     public function createItem($name, array $attributes)
     {
@@ -98,7 +98,7 @@ class MenuContainer
     /**
      * Add new MenuItem object into container item lists.
      *
-     * @param SilexStarter\Admin\Menu\MenuItem    $menu       MenuItem object
+     * @param Xsanisty\Admin\Menu\MenuItem    $menu       MenuItem object
      * @param array                         $options    Menu options
      * [
      *     'position'   => 'first' | 'last' | 'before:item' | 'after:item'
@@ -140,7 +140,7 @@ class MenuContainer
      *
      * @param string $name MenuItem name
      *
-     * @return SilexStarter\Admin\Menu\MenuItem menu item object
+     * @return Xsanisty\Admin\Menu\MenuItem menu item object
      */
     public function getItem($name)
     {

@@ -1,13 +1,13 @@
 <?php
 
-namespace SilexStarter\Admin\Menu;
+namespace Xsanisty\Admin\Menu;
 
 class ChildMenuContainer extends MenuContainer
 {
     /**
      * Parent Item
      *
-     * @var SilexStarter\Admin\Menu\MenuItem
+     * @var Xsanisty\Admin\Menu\MenuItem
      */
     protected $parent;
 
@@ -24,7 +24,7 @@ class ChildMenuContainer extends MenuContainer
     /**
      * Add new MenuItem object into container item lists.
      *
-     * @param SilexStarter\Admin\Menu\MenuItem $menu MenuItem object
+     * @param Xsanisty\Admin\Menu\MenuItem $menu MenuItem object
      */
     public function addItem(MenuItem $menu, array $options = [])
     {

@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'SilexStarter\Admin\Provider\MenuManagerServiceProvider',
+    'Xsanisty\Admin\Provider\MenuManagerServiceProvider',
+    'Xsanisty\Admin\Provider\TwigExtensionServiceProvider',
 ];

@@ -1,11 +1,11 @@
 <?php
 
-namespace SilexStarter\Admin\Provider;
+namespace Xsanisty\Admin\Provider;
 
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 use SilexStarter\SilexStarter;
-use SilexStarter\Admin\Menu\MenuManager;
+use Xsanisty\Admin\Menu\MenuManager;
 
 class MenuManagerServiceProvider implements ServiceProviderInterface
 {
@@ -18,7 +18,7 @@ class MenuManagerServiceProvider implements ServiceProviderInterface
         );
 
         if ($app instanceof SilexStarter) {
-            $app->bind('SilexStarter\Admin\Menu\MenuManager', 'menu_manager');
+            $app->bind('Xsanisty\Admin\Menu\MenuManager', 'menu_manager');
         }
     }
 

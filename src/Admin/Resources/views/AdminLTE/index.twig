@@ -1,5 +1,7 @@
 {% set template = config.get('@silexstarter-dashboard.config.template') %}
 {% set templateCfg = config.get('@silexstarter-dashboard.config.templates.'~template) %}
+{{ dispatch('dashboard.init') }}
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,7 +27,7 @@
         {{ stylesheet() }}
     {% endblock %}
 
-    {{ variable('global') }}
+    {{ export_variable('global') }}
 </head>
 <body class="hold-transition sidebar-mini skin-{{templateCfg.skin}} {% if templateCfg.fixed_header %}fixed{% endif %} {% if cookie('sidebar-collapse') == '1' %}sidebar-collapse{% endif %}">
     <div id="wrapper">
@@ -36,6 +38,7 @@
 
         {# sidebar #}
         {% block sidebar %}
+            {% if active_menu is defined %} {{ set_active_menu(active_menu) }} {% endif %}
             {% include '@silexstarter-dashboard/'~ template ~'/sidebar.twig' %}
         {% endblock %}
 
@@ -67,13 +70,13 @@
     {% endblock %}
 
     {% block javascript %}
-    {{ javascript([
-        "@silexstarter-dashboard/admin-lte/plugins/jQuery/jQuery-2.1.4.min.js",
-        "@silexstarter-dashboard/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js",
-        "@silexstarter-dashboard/admin-lte/js/bootstrap.min.js",
-        "@silexstarter-dashboard/admin-lte/js/app.js",
-    ]) }}
-    {{ javascript() }}
+        {{ javascript([
+            "@silexstarter-dashboard/admin-lte/plugins/jQuery/jQuery-2.1.4.min.js",
+            "@silexstarter-dashboard/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js",
+            "@silexstarter-dashboard/admin-lte/js/bootstrap.min.js",
+            "@silexstarter-dashboard/admin-lte/js/app.js",
+        ]) }}
+        {{ javascript() }}
     {% endblock %}
 </body>
 </html>

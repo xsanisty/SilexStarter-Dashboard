@@ -1,6 +1,6 @@
 <?php
 
-namespace SilexStarter\Admin\Menu;
+namespace Xsanisty\Admin\Menu;
 
 use Exception;
 
@@ -9,7 +9,7 @@ class MenuManager
     /**
      * A list of MenuContainer object.
      *
-     * @var array of SilexStarter\Admin\Menu\MenuContainer
+     * @var array of Xsanisty\Admin\Menu\MenuContainer
      */
     protected $menuContainers = [];
 
@@ -18,7 +18,7 @@ class MenuManager
      *
      * @param string $name MenuContainer name
      *
-     * @return SilexStarter\Admin\Menu\MenuContainer
+     * @return Xsanisty\Admin\Menu\MenuContainer
      */
     public function create($name)
     {
@@ -36,7 +36,7 @@ class MenuManager
      *
      * @param string $name MenuContainer name
      *
-     * @return SilexStarter\Admin\Menu\MenuContainer
+     * @return Xsanisty\Admin\Menu\MenuContainer
      */
     public function get($name)
     {
