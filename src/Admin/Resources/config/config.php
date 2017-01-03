@@ -11,7 +11,7 @@ return [
     'admin_prefix'  => '/admin',
     'default_page'  => 'admin.home',
 
-    'templates'     => [
+    'templates'                 => [
         'RDash'     => [
             'sidebar_renderer'      => 'Xsanisty\Admin\Helper\SidebarMenuRenderer',
             'navbar_renderer'       => 'Xsanisty\Admin\Helper\NavbarMenuRenderer',
@@ -24,6 +24,11 @@ return [
             'breadcrumb_renderer'   => 'Xsanisty\Admin\Helper\LteBreadcrumbMenuRenderer',
             'skin'                  => 'purple-light',
             'fixed_header'          => false
+        ],
+        'Gentelella' => [
+            'sidebar_renderer'      => '',
+            'navbar_renderer'       => '',
+            'breadcrumb_renderer'   => '',
         ]
     ]
 ];

@@ -2,8 +2,8 @@
 
 namespace Xsanisty\Admin\Helper;
 
-use SilexStarter\Contracts\MenuRendererInterface;
-use SilexStarter\Menu\MenuContainer;
+use SilexStarter\Admin\Contracts\MenuRendererInterface;
+use SilexStarter\Admin\Menu\MenuContainer;
 use SilexStarter\Asset\AssetManager;
 use Cartalyst\Sentry\Users\Eloquent\User;
 

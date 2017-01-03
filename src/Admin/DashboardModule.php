@@ -32,10 +32,11 @@ class DashboardModule extends ModuleProvider
             [
                 'routes'        => 'Resources/routes.php',
                 'middlewares'   => 'Resources/middlewares.php',
+                'services'      => 'Resources/config/services.php',
                 'views'         => 'Resources/views',
                 'controllers'   => 'Controller',
                 'config'        => 'Resources/config',
-                'assets'        => 'Resources/assets'
+                'assets'        => 'Resources/assets',
             ]
         );
     }
@@ -64,10 +65,6 @@ class DashboardModule extends ModuleProvider
     public function register()
     {
         $self   = $this;
-
-        $this->app->registerServices(
-            $this->app['config']['@silexstarter-dashboard.services']
-        );
 
         $this->app['dispatcher']->addListener(
             DashboardModule::INIT,

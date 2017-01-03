@@ -1,3 +1,5 @@
 <?php
 
-return [];
+return [
+    'SilexStarter\Admin\Provider\MenuManagerServiceProvider',
+];

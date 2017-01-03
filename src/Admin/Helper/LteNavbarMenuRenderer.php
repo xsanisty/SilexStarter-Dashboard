@@ -3,9 +3,9 @@
 namespace Xsanisty\Admin\Helper;
 
 use Exception;
-use SilexStarter\Contracts\MenuRendererInterface;
-use SilexStarter\Menu\MenuContainer;
-use SilexStarter\Menu\MenuItem;
+use SilexStarter\Admin\Contracts\MenuRendererInterface;
+use SilexStarter\Admin\Menu\MenuContainer;
+use SilexStarter\Admin\Menu\MenuItem;
 use SilexStarter\Asset\AssetManager;
 use Cartalyst\Sentry\Users\UserInterface;
 
