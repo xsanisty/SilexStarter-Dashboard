@@ -14,7 +14,7 @@ class TwigExtensionServiceProvider implements ServiceProviderInterface
         $app->extend(
             'twig',
             function ($twigEnv, $app) {
-                if ($twigEnv->hasExtension('Xsanisty\Admin\TwigExtension\TwigMenuExtension')) {
+                if (!$twigEnv->hasExtension('Xsanisty\Admin\TwigExtension\TwigMenuExtension')) {
                     $twigEnv->addExtension(new TwigMenuExtension($app['menu_manager']));
                 }
 
