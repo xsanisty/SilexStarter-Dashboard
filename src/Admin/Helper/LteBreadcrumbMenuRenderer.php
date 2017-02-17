@@ -12,7 +12,7 @@ class LteBreadcrumbMenuRenderer implements MenuRendererInterface
     protected $currentUser;
     protected $assetManager;
 
-    public function __construct(AssetManager $assetManager, UserInterface $user)
+    public function __construct(AssetManager $assetManager, UserInterface $user = null)
     {
         $this->currentUser  = $user;
         $this->assetManager = $assetManager;

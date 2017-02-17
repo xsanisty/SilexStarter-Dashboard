@@ -33,9 +33,12 @@ class LteSidebarMenuRenderer implements MenuRendererInterface
 
         foreach ($menu->getItems() as $item) {
 
-            if ($item->permission
-                && $this->currentUser
-                && !$this->currentUser->hasAnyAccess(
+            if ($item->permission && !$this->currentUser) {
+                continue;
+            }
+
+            if ($item->permission && 
+                !$this->currentUser->hasAnyAccess(
                     array_merge(['admin'], (array) $item->permission)
                 )
             ) {

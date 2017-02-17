@@ -1,6 +1,7 @@
 <aside class="main-sidebar">
 
     <section class="sidebar">
+        {% if current_user %}
         <div class="user-panel">
             <div class="pull-left image">
             {% if current_user.profile_pic %}
@@ -16,6 +17,7 @@
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
+        {% endif %}
 
         {{ render_menu('admin_sidebar') }}
     </section>

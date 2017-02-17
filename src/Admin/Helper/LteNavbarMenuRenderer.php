@@ -24,6 +24,7 @@ class LteNavbarMenuRenderer implements MenuRendererInterface
 
         $this->addUserMenuRenderer();
         $this->addGeneralMenuRenderer();
+        $this->addDropdownMenuRenderer();
         $this->addNotificationMenuRenderer();
     }
 
@@ -43,9 +44,11 @@ class LteNavbarMenuRenderer implements MenuRendererInterface
         $itemList   = '';
 
         $menuItems  = $menu->getItems();
-        unset($menuItems['user']);
 
-        $menuItems['user'] = $menu->getItem('user');
+        if ($this->currentUser) {
+            unset($menuItems['user']);
+            $menuItems['user'] = $menu->getItem('user');
+        }
 
         foreach ($menuItems as $item) {
             $renderer = $item->getMetaAttribute('renderer');
@@ -177,13 +180,13 @@ class LteNavbarMenuRenderer implements MenuRendererInterface
         };
     }
 
-    protected function addGeneralMenuRenderer()
+    protected function addDropdownMenuRenderer()
     {
-        $this->renderer['general-menu-renderer'] = function (MenuItem $item) {
+        $this->renderer['dropdown-menu-renderer'] = function (MenuItem $item) {
             $containerTemplate = '
                 <li class="dropdown notifications-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-'.$item->icon.'"></i> '. $item->label .'
+                    <a href="' . $item->url . '" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-'. $item->icon .'"></i> '. $item->label .'
                     </a>
                     <ul class="dropdown-menu">
 
@@ -212,6 +215,21 @@ class LteNavbarMenuRenderer implements MenuRendererInterface
 
             $compiledMenu = sprintf($containerTemplate, $menuItem);
 
+            return $compiledMenu;
+        };
+    }
+
+    protected function addGeneralMenuRenderer()
+    {
+        $this->renderer['general-menu-renderer'] = function (MenuItem $item) {
+            $compiledMenu = '
+                <li>
+                    <a href="' . $item->url . '">
+                        <i class="fa fa-'. $item->icon .'"></i> '. $item->label .'
+                    </a>
+                </li>
+            ';
+            
             return $compiledMenu;
         };
     }

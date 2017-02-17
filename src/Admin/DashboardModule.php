@@ -128,8 +128,22 @@ class DashboardModule extends ModuleProvider
     protected function registerNavbarMenu()
     {
         $user   = $this->app['user'];
-        $name   = $user ? $user->first_name.' '.$user->last_name : '';
-        $email  = $user ? $user->email : '';
+
+        if (!$user) {
+            $menu   = $this->app['menu_manager']->get('admin_navbar')->createItem(
+                'user',
+                [
+                    'icon'  => 'sign-in',
+                    'label' => 'Login',
+                    'url'   => Url::to('admin.login')
+                ]
+            );
+
+            return;
+        }
+
+        $name   = $user->first_name.' '.$user->last_name;
+        $email  = $user->email;
         $name   = trim($name) ? $name : $email;
         $icon   = $user->profile_pic
                 ? $this->app['asset_manager']->resolvePath('img/profile/' . $user->profile_pic)
