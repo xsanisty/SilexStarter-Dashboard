@@ -141,7 +141,7 @@ class MenuItem
      *
      * @return boolean
      */
-    public function hasActiveChildren(MenuItem $item = null)
+    public function hasActiveChildren()
     {
         $hasActiveItem = $this->childContainer->hasActiveItem();
 

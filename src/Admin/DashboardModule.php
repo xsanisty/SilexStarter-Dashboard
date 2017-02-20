@@ -2,6 +2,7 @@
 
 namespace Xsanisty\Admin;
 
+use Exception;
 use Silex\Application;
 use SilexStarter\Module\ModuleInfo;
 use SilexStarter\Module\ModuleResource;
@@ -10,6 +11,10 @@ use SilexStarter\Module\ModuleProvider;
 class DashboardModule extends ModuleProvider
 {
     const INIT = 'dashboard.init';
+
+    protected $app;
+    protected $info;
+    protected $resources;
 
     /**
      * {@inheritdoc}
@@ -113,6 +118,7 @@ class DashboardModule extends ModuleProvider
                 );
 
                 $self->registerNavbarMenu();
+                $self->registerModuleMenu();
                 $self->app['asset_manager']->exportVariable('base_url', Url::path('/', true));
                 $self->app['asset_manager']->exportVariable('admin_template', $template);
                 $self->app['asset_manager']->exportVariable('admin_skin', $templateConf['skin']);
@@ -180,5 +186,26 @@ class DashboardModule extends ModuleProvider
                 'meta'  => ['type' => 'link']
             ]
         );
+    }
+
+    /**
+     * Register module menu if exists.
+     */
+    protected function registerModuleMenu()
+    {
+        $menus = $this->app['config']->get('menus');
+
+        $this->app['menu_manager']->createFromArray($menus);
+
+        $modules = $this->app['module']->getRegisteredModules();
+
+        foreach ($modules as $moduleIdentifier => $moduleProvider) {
+            try {
+                $menus = $this->app['config']->get('@' . $moduleIdentifier . '.menus');
+
+                $this->app['menu_manager']->createFromArray($menus);
+            } catch (Exception $e) {
+            }
+        }
     }
 }

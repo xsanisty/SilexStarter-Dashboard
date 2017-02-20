@@ -27,8 +27,39 @@ class MenuManager
         return $this->menuContainers[$name];
     }
 
-    public function createFromArray(array $menu) {
+    /**
+     * Create menu structure from array.
+     *
+     * @param array $menu
+     */
+    public function createFromArray(array $menus)
+    {
+        foreach ($menus as $name => $items) {
+            if (!isset($this->menuContainers[$name])) {
+                $this->create($name);
+            }
 
+            $menu = $this->get($name);
+
+            foreach ($items as $itemName => $itemConfig) {
+                $menuItem = $menu->createItem($itemName, $itemConfig);
+
+                if (isset($itemConfig['submenu']) && $itemConfig['submenu']) {
+                    $this->addSubMenuArray($menuItem, $itemConfig['submenu']);
+                }
+            }
+        }
+    }
+
+    protected function addSubMenuArray(MenuItem $menu, array $submenu)
+    {
+        foreach ($submenu as $menuName => $menuConfig) {
+            $menu->addChildren($menuName, $menuConfig);
+
+            if (isset($menuConfig['submenu']) && $menuConfig['submenu']) {
+                $this->addSubMenuArray($menuItem, $menuConfig['submenu']);
+            }
+        }
     }
 
     /**
@@ -45,7 +76,6 @@ class MenuManager
         }
 
         throw new Exception("Can not find menu with name: $name");
-
     }
 
     /**

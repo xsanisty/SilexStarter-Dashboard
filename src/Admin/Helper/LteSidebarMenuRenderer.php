@@ -32,12 +32,11 @@ class LteSidebarMenuRenderer implements MenuRendererInterface
                 : '<ul class="treeview-menu '.($menu->hasActiveItem() ? 'active' : '').'">';
 
         foreach ($menu->getItems() as $item) {
-
             if ($item->permission && !$this->currentUser) {
                 continue;
             }
 
-            if ($item->permission && 
+            if ($item->permission &&
                 !$this->currentUser->hasAnyAccess(
                     array_merge(['admin'], (array) $item->permission)
                 )
