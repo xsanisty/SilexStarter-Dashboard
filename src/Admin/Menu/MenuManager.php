@@ -32,6 +32,7 @@ class MenuManager
      *
      * @param array $menu
      */
+    
     public function createFromArray(array $menus)
     {
         foreach ($menus as $name => $items) {
@@ -54,7 +55,12 @@ class MenuManager
     protected function addSubMenuArray(MenuItem $menu, array $submenu)
     {
         foreach ($submenu as $menuName => $menuConfig) {
-            $menu->addChildren($menuName, $menuConfig);
+            try {
+                $menuItem = $menu->getChildren($menuName);
+            } catch (Exception $e) {
+                $menuItem = $menu->addChildren($menuName, $menuConfig);
+            }
+
 
             if (isset($menuConfig['submenu']) && $menuConfig['submenu']) {
                 $this->addSubMenuArray($menuItem, $menuConfig['submenu']);
