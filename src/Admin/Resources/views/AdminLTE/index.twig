@@ -29,8 +29,8 @@
 
     {{ export_variable('global') }}
 </head>
-<body class="hold-transition sidebar-mini skin-{{templateCfg.skin}} 
-            {% if templateCfg.fixed_header %}fixed{% endif %} 
+<body class="hold-transition sidebar-mini skin-{{templateCfg.skin}}
+            {% if templateCfg.fixed_header %}fixed{% endif %}
             {% if cookie('sidebar-collapse') == '1' %}sidebar-collapse{% endif %}">
     <div id="wrapper">
         {# header #}
@@ -47,8 +47,12 @@
         <div class="content-wrapper">
             <section class="content-header">
                 <h1>
-                    {{ page_title | default('') }}
-                    <small>{{ page_description | default('') }}</small>
+                    {% block page_title %}
+                        {{ page_title | default('') }}
+                    {% endblock %}
+                    {% block page_description %}
+                        <small>{{ page_description | default('') }}</small>
+                    {% endblock %}
                 </h1>
                 {% block breadcrumb %}
                     {{ render_menu('admin_breadcrumb') }}
