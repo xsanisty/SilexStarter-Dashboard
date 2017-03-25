@@ -7,6 +7,7 @@ use Silex\Application;
 use SilexStarter\Module\ModuleInfo;
 use SilexStarter\Module\ModuleResource;
 use SilexStarter\Module\ModuleProvider;
+use SilexStarter\Config\ConfigurationNotFoundException;
 
 class DashboardModule extends ModuleProvider
 {
@@ -204,7 +205,7 @@ class DashboardModule extends ModuleProvider
                 $menus = $this->app['config']->get('@' . $moduleIdentifier . '.menus');
 
                 $this->app['menu_manager']->createFromArray($menus);
-            } catch (Exception $e) {
+            } catch (ConfigurationNotFoundException $e) {
             }
         }
     }

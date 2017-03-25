@@ -32,7 +32,7 @@ class MenuManager
      *
      * @param array $menu
      */
-    
+
     public function createFromArray(array $menus)
     {
         foreach ($menus as $name => $items) {
