@@ -33,7 +33,6 @@ class LteSidebarMenuRenderer implements MenuRendererInterface
 
         foreach ($menu->getItems() as $item) {
             if ($item->permission && !$this->currentUser) {
-                dump('current user not exists, but menu require permissions');
                 continue;
             }
 
@@ -42,8 +41,6 @@ class LteSidebarMenuRenderer implements MenuRendererInterface
                     array_merge(['admin'], (array) $item->permission)
                 )
             ) {
-                dump('current user exists, but doesnt have required permissions');
-
                 continue;
             }
 
