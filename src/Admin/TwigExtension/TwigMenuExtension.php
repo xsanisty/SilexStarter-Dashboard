@@ -3,6 +3,7 @@
 namespace Xsanisty\Admin\TwigExtension;
 
 use Xsanisty\Admin\Menu\MenuManager;
+use Exception;
 use Twig_Extension;
 use Twig_SimpleFunction;
 
@@ -38,7 +39,11 @@ class TwigMenuExtension extends Twig_Extension
     {
         list($menuGroup, $menuItem) = explode('.', $menuId, 2);
 
-        $this->menu->get($menuGroup)->setActive($menuItem);
+        try {
+            $this->menu->get($menuGroup)->setActive($menuItem);
+        } catch (Exception $e) {
+            //do nothing if menu missing
+        }
 
         return;
     }
