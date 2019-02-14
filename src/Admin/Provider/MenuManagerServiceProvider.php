@@ -2,14 +2,14 @@
 
 namespace Xsanisty\Admin\Provider;
 
-use Silex\Application;
-use Silex\ServiceProviderInterface;
+use Pimple\Container;
+use Pimple\ServiceProviderInterface;
 use SilexStarter\SilexStarter;
 use Xsanisty\Admin\Menu\MenuManager;
 
 class MenuManagerServiceProvider implements ServiceProviderInterface
 {
-    public function register(Application $app)
+    public function register(Container $app)
     {
         $app['menu_manager'] = $app->share(
             function () {
@@ -22,7 +22,7 @@ class MenuManagerServiceProvider implements ServiceProviderInterface
         }
     }
 
-    public function boot(Application $app)
+    public function boot(Container $app)
     {
     }
 }
