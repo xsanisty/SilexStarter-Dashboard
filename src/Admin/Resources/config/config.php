@@ -13,15 +13,15 @@ return [
 
     'templates'                 => [
         'RDash'     => [
-            'sidebar_renderer'      => 'Xsanisty\Admin\Helper\SidebarMenuRenderer',
-            'navbar_renderer'       => 'Xsanisty\Admin\Helper\NavbarMenuRenderer',
-            'breadcrumb_renderer'   => 'Xsanisty\Admin\Helper\BreadcrumbMenuRenderer',
+            'sidebar_renderer'      => Xsanisty\Admin\Helper\SidebarMenuRenderer::class,
+            'navbar_renderer'       => Xsanisty\Admin\Helper\NavbarMenuRenderer::class,
+            'breadcrumb_renderer'   => Xsanisty\Admin\Helper\BreadcrumbMenuRenderer::class,
             'skin'                  => 'blue',
         ],
         'AdminLTE'  => [
-            'sidebar_renderer'      => 'Xsanisty\Admin\Helper\LteSidebarMenuRenderer',
-            'navbar_renderer'       => 'Xsanisty\Admin\Helper\LteNavbarMenuRenderer',
-            'breadcrumb_renderer'   => 'Xsanisty\Admin\Helper\LteBreadcrumbMenuRenderer',
+            'sidebar_renderer'      => Xsanisty\Admin\Helper\LteSidebarMenuRenderer::class,
+            'navbar_renderer'       => Xsanisty\Admin\Helper\LteNavbarMenuRenderer::class,
+            'breadcrumb_renderer'   => Xsanisty\Admin\Helper\LteBreadcrumbMenuRenderer::class,
             'skin'                  => 'purple-light',
             'fixed_header'          => false
         ],
