@@ -59,8 +59,11 @@ class AdminController
                 Sentry::login($user, false);
             }
 
-            $defaultUrl = Url::to(Config::get('@silexstarter-dashboard.config.default_page'));
+            if (isset($_COOKIE['invitation_token'])) {
+                return Response::redirect(Url::to('byggplanen-backend.invitation.accept', ['token' => $_COOKIE['invitation_token']], true));
+            }
 
+            $defaultUrl = Url::to(Config::get('@silexstarter-dashboard.config.default_page'));
             return Response::redirect($intended ?  $intended : $defaultUrl);
 
         } catch (\Exception $e) {
