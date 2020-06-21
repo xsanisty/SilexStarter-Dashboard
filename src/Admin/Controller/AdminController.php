@@ -3,14 +3,17 @@
 namespace Xsanisty\Admin\Controller;
 
 use Xsanisty\Admin\DashboardModule;
+use SilexStarter\Controller\DispatcherAwareController;
 
-class AdminController
+class AdminController extends DispatcherAwareController
 {
     protected $request;
 
     public function index()
     {
-        return View::make('@silexstarter-dashboard/'.Config::get('@silexstarter-dashboard.config.template').'/dashboard');
+        $template = Config::get('@silexstarter-dashboard.config.template');
+
+        return View::make('@silexstarter-dashboard/' . $template . '/dashboard');
     }
 
     /**
@@ -19,10 +22,11 @@ class AdminController
      */
     public function login()
     {
-        $loginAttr = Config::get('sentry.users.login_attribute');
+        $loginAttr  = Config::get('sentry.users.login_attribute');
+        $template   = Config::get('@silexstarter-dashboard.config.template');
 
         return View::make(
-            '@silexstarter-dashboard/'.Config::get('@silexstarter-dashboard.config.template').'/login',
+            '@silexstarter-dashboard/' . $template . '/login',
             [
                 'message'       => Session::flash('message'),
                 'credential'    => [$loginAttr => Session::flash($loginAttr)],
@@ -61,6 +65,8 @@ class AdminController
 
             $defaultUrl = Url::to(Config::get('@silexstarter-dashboard.config.default_page'));
 
+            $this->getDispatcher()->dispatch('user.login');
+
             return Response::redirect($intended ?  $intended : $defaultUrl);
 
         } catch (\Exception $e) {
@@ -81,7 +87,15 @@ class AdminController
     {
         Sentry::logout();
 
-        return Response::redirect(Url::to('admin.login'));
+        $this->getDispatcher()->dispatch('user.logout');
+
+        try {
+            $logoutPage = Config::get('@silexstarter-dashboard.config.logout_page');
+
+            return Response::redirect(Url::to($logoutPage));
+        } catch (\Exception $e) {
+            return Response::redirect(Url::to('admin.login'));
+        }
     }
 
     /**
