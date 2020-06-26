@@ -10,6 +10,7 @@ function TableManager(options) {
         datatableApi : null,
         entity : null,
         dom : null,
+        scrollX : false,
         columnDefs : [],
         renderIdAsButton: true, //id should be placed at last cols
         buttonColumnWidth : '150px',
@@ -385,7 +386,7 @@ TableManager.fn.initDatatable = function() {
 
     this.datatable = self.baseTable.DataTable({
         processing  : true,
-        scrollX     : true,
+        scrollX     : this.options.scrollX,
         serverSide  : true,
         responsive  : true,
         dom         : this.options.dom,
