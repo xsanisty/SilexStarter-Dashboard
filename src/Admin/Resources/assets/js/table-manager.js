@@ -385,6 +385,7 @@ TableManager.fn.initDatatable = function() {
 
     this.datatable = self.baseTable.DataTable({
         processing  : true,
+        scrollX     : true,
         serverSide  : true,
         responsive  : true,
         dom         : this.options.dom,
