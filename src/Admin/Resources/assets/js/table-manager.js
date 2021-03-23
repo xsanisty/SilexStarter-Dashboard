@@ -241,7 +241,7 @@ TableManager.fn.edit = function(entityId) {
             $('#' + self.snakeCasedEntity + '_token_field').val(self.options.csrfToken);
             $('#' + self.snakeCasedEntity + '_form_modal').modal('show');
 
-            self.event.dispatch('edit_form.after_shown');
+            self.event.dispatch('edit_form.after_shown', {entity : data});
         })
         .fail(function(xhr, status, error) {
             self.showErrorResponse(xhr);
